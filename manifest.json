@@ -9,12 +9,12 @@
   "orientation": "portrait-primary",
  "icons": [
   {
-    "src": "/KSV-Discord-Documentation/og-banner.png",
-    "sizes": "1536x1024",
+    "src": "/KSV-Discord-Documentation/icon-512.png",
+    "sizes": "512x512",
     "type": "image/png",
     "purpose": "any maskable"
   }
-]
+],
   "categories": ["education", "utilities"],
   "lang": "en",
   "scope": "/"
