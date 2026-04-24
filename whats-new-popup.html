@@ -1,0 +1,226 @@
+<!-- ══════════════════════════════════════════════════════════
+     WHAT'S NEW POPUP — KSV University Website
+     
+     HOW TO ADD:
+     ─────────────────────────────────────────────────────────
+     STEP 1: content.js me "changelog" section add karo (neeche diya hai)
+     STEP 2: index.html me </body> se PEHLE popup HTML add karo
+     STEP 3: index.html me <style> ke andar CSS add karo
+     STEP 4: index.html me script section me JS add karo
+     
+     VERSION UPDATE KARNA HO TO: sirf content.js me changelog array update karo!
+══════════════════════════════════════════════════════════ -->
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 1: content.js me SITE object ke andar add karo
+     (version aur lastUpdated ke saath)
+───────────────────────────────────────────────────────── -->
+
+/*  content.js me yeh add karo SITE = { ... } ke andar  */
+
+  version: "2.0",
+  lastUpdated: "12/04/2026",
+
+  // ── CHANGELOG (What's New popup ke liye) ─────────────────
+  changelog: {
+    currentVersion: "2.0.0",
+    releaseDate: "12/04/2026",
+    updates: [
+      { type: "new",      text: "Complete website redesign launched (v2.0)" },
+      { type: "new",      text: "content.js introduced — edit content without touching HTML" },
+      { type: "new",      text: "Contact form with OTP email verification added" },
+      { type: "improved", text: "Mobile responsive layout improved across all pages" },
+      { type: "improved", text: "Bot Ecosystem section expanded with full details" },
+      { type: "fixed",    text: "Google Analytics tracking enabled (G-DK38RGJKLB)" }
+    ]
+  },
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 2: index.html me </body> se BILKUL PEHLE yeh add karo
+───────────────────────────────────────────────────────── -->
+
+<!-- ── WHAT'S NEW POPUP ── -->
+<div id="wn-fab" onclick="wnToggle()" title="What's New">
+  <span id="wn-dot"></span>
+  <span id="wn-fab-label">What's New</span>
+</div>
+
+<div id="wn-backdrop" onclick="wnClose()"></div>
+
+<div id="wn-popup">
+  <div id="wn-header">
+    <div>
+      <div id="wn-title">🆕 What's New</div>
+      <div id="wn-version-line"></div>
+    </div>
+    <button id="wn-close" onclick="wnClose()">✕</button>
+  </div>
+  <div id="wn-body">
+    <!-- JS se fill hoga -->
+  </div>
+  <div id="wn-footer">
+    NPCCSM · Niora Digital Solutions
+  </div>
+</div>
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 3: index.html me <style> ke ANDAR, </style> se pehle add karo
+───────────────────────────────────────────────────────── -->
+
+/* ── WHAT'S NEW POPUP ──────────────────────────── */
+#wn-fab{
+  position:fixed;bottom:24px;right:20px;z-index:1000;
+  display:flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));
+  border:1px solid rgba(0,212,255,.4);
+  color:#fff;font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:600;letter-spacing:.5px;
+  padding:9px 16px;border-radius:20px;cursor:pointer;
+  box-shadow:0 0 20px rgba(0,212,255,.12);
+  transition:all .2s;
+}
+#wn-fab:hover{
+  background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));
+  box-shadow:0 0 32px rgba(0,212,255,.22);
+  transform:translateY(-2px);
+}
+#wn-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--o);box-shadow:0 0 8px var(--o);
+  display:none;animation:pulse 2s infinite;
+}
+#wn-dot.show{display:inline-block;}
+
+#wn-backdrop{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.5);z-index:1001;
+}
+#wn-backdrop.show{display:block;}
+
+#wn-popup{
+  position:fixed;bottom:72px;right:20px;
+  width:310px;z-index:1002;
+  background:#060d14;
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 0 1px rgba(0,212,255,.08);
+  transform:translateY(16px) scale(.97);opacity:0;
+  pointer-events:none;
+  transition:transform .22s ease,opacity .22s ease;
+}
+#wn-popup.open{
+  transform:translateY(0) scale(1);opacity:1;
+  pointer-events:all;
+}
+
+#wn-header{
+  background:linear-gradient(90deg,rgba(0,212,255,.12),rgba(0,255,136,.06));
+  border-bottom:1px solid rgba(0,212,255,.15);
+  padding:13px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+#wn-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.82rem;font-weight:700;color:#fff;
+  margin-bottom:3px;
+}
+#wn-version-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;color:var(--ac);letter-spacing:.5px;
+}
+#wn-close{
+  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);
+  color:var(--mu);border-radius:50%;width:24px;height:24px;
+  cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+#wn-close:hover{background:rgba(255,68,102,.15);border-color:var(--r);color:var(--r);}
+
+#wn-body{padding:12px 14px;max-height:230px;overflow-y:auto;}
+#wn-body::-webkit-scrollbar{width:3px;}
+#wn-body::-webkit-scrollbar-thumb{background:var(--b2);}
+
+.wn-item{
+  display:flex;gap:9px;padding:7px 0;
+  border-bottom:1px solid rgba(0,212,255,.06);
+  align-items:flex-start;
+}
+.wn-item:last-child{border-bottom:none;}
+.wn-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.55rem;font-weight:700;
+  padding:2px 6px;border-radius:3px;
+  white-space:nowrap;margin-top:1px;flex-shrink:0;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.wn-tag.new{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--ac);}
+.wn-tag.improved{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.25);color:var(--o);}
+.wn-tag.fixed{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.wn-text{
+  font-size:.78rem;color:#a0b8cc;line-height:1.5;
+}
+
+#wn-footer{
+  border-top:1px solid rgba(0,212,255,.08);
+  padding:8px 14px;text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.58rem;color:var(--di);letter-spacing:.5px;
+}
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 4: index.html me <script> section me yeh add karo
+     (window.addEventListener('load'...) se PEHLE)
+───────────────────────────────────────────────────────── -->
+
+// ── WHAT'S NEW POPUP ────────────────────────────────────
+(function(){
+  const CL = SITE.changelog;
+  const VER_KEY = 'ksv_wn_seen_ver';
+  const seenVer = localStorage.getItem(VER_KEY);
+  const isNew = seenVer !== CL.currentVersion;
+
+  // Version line fill
+  document.getElementById('wn-version-line').textContent =
+    'v' + CL.currentVersion + ' · ' + CL.releaseDate;
+
+  // Updates fill
+  const body = document.getElementById('wn-body');
+  body.innerHTML = CL.updates.map(u =>
+    `<div class="wn-item">
+      <span class="wn-tag ${u.type}">${u.type}</span>
+      <span class="wn-text">${u.text}</span>
+    </div>`
+  ).join('');
+
+  // Orange dot dikha agar new version hai
+  if(isNew) document.getElementById('wn-dot').classList.add('show');
+
+  window.wnToggle = function(){
+    const popup = document.getElementById('wn-popup');
+    const backdrop = document.getElementById('wn-backdrop');
+    if(popup.classList.contains('open')){
+      wnClose();
+    } else {
+      popup.classList.add('open');
+      backdrop.classList.add('show');
+      // Mark as seen
+      localStorage.setItem(VER_KEY, CL.currentVersion);
+      document.getElementById('wn-dot').classList.remove('show');
+    }
+  };
+
+  window.wnClose = function(){
+    document.getElementById('wn-popup').classList.remove('open');
+    document.getElementById('wn-backdrop').classList.remove('show');
+  };
+
+  // ESC key se close
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') wnClose();
+  });
+})();
+// ── /WHAT'S NEW POPUP ───────────────────────────────────

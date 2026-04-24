@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KSV University · Discord Ecosystem</title>
+<meta name="description" content="Official Discord community for KSV University – Kadi. Attendance bots, exam info, study resources and more."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://vadaliavraj0214-creator.github.io/KSV-Discord-Website/"/>
+<meta property="og:title" content="KSV University · Discord Ecosystem"/>
+<meta property="og:description" content="Official Discord community for KSV University – Kadi. Attendance bots, exam info, study resources and more."/>
+<meta property="og:image" content="https://vadaliavraj0214-creator.github.io/KSV-Discord-Website/og-banner.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://vadaliavraj0214-creator.github.io/KSV-Discord-Website/og-banner.png"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4ff'/%3E%3Cpolygon points='32,8 56,18 32,28 8,18' fill='%23020408'/%3E%3Crect x='18' y='26' width='28' height='10' rx='2' fill='%231a1a2e'/%3E%3Cellipse cx='32' cy='36' rx='14' ry='3' fill='%23020408'/%3E%3Ctext x='32' y='56' text-anchor='middle' font-size='13' font-weight='700' fill='%23020408' font-family='monospace'%3EKSV%3C/text%3E%3C/svg%3E"/>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#00d4ff"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="KSV Discord"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#020408;--surf:#060d14;--card:#0a1520;
+  --b1:#0f2535;--b2:#1a3a50;
+  --ac:#00d4ff;--g:#00ff88;--o:#ffaa00;--r:#ff4466;
+  --tx:#c8d8e8;--mu:#4a6a80;--di:#2a4a60;
+  --rr:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* ── LOADING SCREEN ── */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .6s ease,visibility .6s ease;}
+#loader.hide{opacity:0;visibility:hidden;}
+.ld-cap{position:relative;width:100px;height:95px;}
+.ld-board{position:absolute;top:0;left:50%;transform:translateX(-50%);width:72px;height:36px;background:#0a1520;border:2px solid #00d4ff;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);animation:capBob 1.6s ease-in-out infinite;}
+.ld-pole{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:8px;height:18px;background:#0a1520;border:1px solid #00d4ff;border-radius:2px;animation:capBob 1.6s ease-in-out infinite;}
+.ld-cyl{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:72px;height:28px;background:#060d14;border:2px solid #00d4ff;border-radius:4px;animation:capBob 1.6s ease-in-out infinite;}
+.ld-tassel{position:absolute;top:6px;right:2px;width:3px;height:34px;background:#00d4ff;border-radius:2px;transform-origin:top center;animation:tasselSwing 1.6s ease-in-out infinite;}
+.ld-tassel::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#00d4ff;}
+@keyframes capBob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-12px);}}
+@keyframes tasselSwing{0%,100%{transform:rotate(-18deg);}50%{transform:rotate(18deg);}}
+.ld-title{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:#fff;font-weight:700;letter-spacing:3px;}
+.ld-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--mu);letter-spacing:2px;text-transform:uppercase;}
+.ld-bar-wrap{width:220px;height:2px;background:var(--b1);border-radius:2px;overflow:hidden;}
+.ld-bar{height:100%;width:0%;background:linear-gradient(90deg,#00d4ff,#00ff88);border-radius:2px;transition:width .25s ease;}
+
+/* scanlines */
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.05) 2px,rgba(0,0,0,.05) 4px);pointer-events:none;z-index:9998;}
+/* grid */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+.blob1{position:fixed;top:-150px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,.06) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.blob2{position:fixed;bottom:-120px;right:-120px;width:450px;height:450px;background:radial-gradient(circle,rgba(0,255,136,.05) 0%,transparent 65%);pointer-events:none;z-index:0;}
+
+/* ════════════════════════════════
+   HERO / INTRO SCREEN
+════════════════════════════════ */
+#hero{
+  position:relative;z-index:10;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px 20px;
+  text-align:center;
+  transition:opacity .6s ease, transform .6s ease;
+}
+#hero.hide{opacity:0;transform:translateY(-30px);pointer-events:none;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.25);
+  color:var(--ac);font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.62rem,2vw,.72rem);letter-spacing:3px;
+  padding:7px 18px;border-radius:3px;
+  margin-bottom:32px;text-transform:uppercase;
+  animation:fadeDown .8s ease both;
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+.hero-title{
+  font-size:clamp(2.2rem,8vw,5rem);
+  font-weight:800;letter-spacing:-2px;line-height:1.05;
+  color:#fff;margin-bottom:8px;
+  animation:fadeDown .8s .1s ease both;
+}
+.hero-title .hl{
+  background:linear-gradient(90deg,var(--ac) 0%,var(--g) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub-title{
+  font-size:clamp(1rem,3vw,1.6rem);
+  font-weight:600;color:var(--mu);letter-spacing:-.3px;
+  margin-bottom:20px;
+  animation:fadeDown .8s .2s ease both;
+}
+.hero-desc{
+  max-width:520px;color:var(--mu);
+  font-size:clamp(.88rem,2.5vw,.98rem);line-height:1.8;
+  margin-bottom:40px;
+  animation:fadeDown .8s .3s ease both;
+}
+
+.hero-btns{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:48px;
+  animation:fadeUp .8s .4s ease both;
+}
+.btn-join{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;border:1px solid var(--b2);
+  color:var(--mu);font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.78rem,2vw,.88rem);font-weight:600;
+  padding:12px 24px;border-radius:var(--rr);
+  text-decoration:none;transition:all .2s;
+}
+.btn-join:hover{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.06);}
+.btn-enter{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));
+  border:1px solid rgba(0,212,255,.4);
+  color:#fff;font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.78rem,2vw,.88rem);font-weight:600;
+  padding:12px 24px;border-radius:var(--rr);
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 0 20px rgba(0,212,255,.1);
+}
+.btn-enter:hover{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));box-shadow:0 0 32px rgba(0,212,255,.2);transform:translateY(-2px);}
+
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px 32px;justify-items:center;
+  animation:fadeUp .8s .5s ease both;
+  margin-bottom:48px;
+}
+.hstat{text-align:center;}
+.hstat-n{font-size:clamp(1.3rem,4vw,1.8rem);font-weight:800;color:var(--ac);font-family:'JetBrains Mono',monospace;}
+.hstat-l{font-size:.65rem;color:var(--mu);font-family:'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;}
+
+.hero-scroll{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:var(--di);font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:2px;cursor:pointer;animation:fadeIn 1s 1s ease both;
+  margin-top:8px;
+}
+.scroll-arrow{animation:bounce 1.5s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ════════════════════════════════
+   MAIN APP (hidden until enter)
+════════════════════════════════ */
+#app{
+  display:none;
+  opacity:0;
+  transition:opacity .5s ease;
+  position:relative;z-index:10;
+}
+#app.show{display:flex;flex-direction:column;}
+#app.visible{opacity:1;}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(6,13,20,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;gap:10px;
+  padding:10px 18px;
+}
+.hbtn{background:var(--card);border:1px solid var(--b2);color:var(--ac);padding:7px 12px;border-radius:var(--rr);cursor:pointer;font-size:1rem;line-height:1;flex-shrink:0;}
+.tb-name{font-weight:700;font-size:.88rem;color:#fff;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace;}
+.tb-home{background:none;border:1px solid var(--b2);color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:6px 10px;border-radius:var(--rr);cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.tb-home:hover{color:var(--ac);border-color:var(--ac);}
+.tb-back{background:var(--card);border:1px solid var(--b2);color:var(--ac);font-size:1rem;font-weight:700;padding:5px 11px;border-radius:var(--rr);cursor:pointer;flex-shrink:0;transition:all .2s;line-height:1;}
+.tb-back:hover{background:rgba(0,212,255,.1);border-color:var(--ac);transform:translateX(-2px);}
+.tb-join{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:5px;
+  background:transparent;border:1px solid var(--b2);
+  color:var(--mu);font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;padding:6px 12px;border-radius:var(--rr);text-decoration:none;white-space:nowrap;
+  transition:all .2s;
+}
+.tb-join:hover{border-color:var(--ac);color:var(--ac);}
+
+/* ── OVERLAY ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:150;}
+.overlay.show{display:block;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  position:fixed;top:0;left:0;width:256px;height:100vh;
+  background:var(--surf);border-right:1px solid var(--b1);
+  overflow-y:auto;z-index:160;
+  transform:translateX(-100%);transition:transform .28s ease;
+  padding-bottom:40px;
+}
+.sidebar.open{transform:translateX(0);}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--b2);}
+@media(min-width:900px){
+  .sidebar{transform:translateX(0);}
+  .hbtn,.tb-home{display:none;}
+  .content-wrap{margin-left:256px;}
+  .overlay{display:none!important;}
+}
+
+.sb-top{padding:16px 18px 14px;border-bottom:1px solid var(--b1);}
+.sb-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 7px var(--g);margin-right:5px;animation:pulse 2s infinite;}
+.sb-srv{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--mu);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.sb-title{font-size:.88rem;font-weight:700;color:#fff;line-height:1.3;}
+.sb-sub{font-size:.65rem;color:var(--ac);font-family:'JetBrains Mono',monospace;margin-top:2px;}
+.sb-join{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:10px 16px;padding:8px;
+  background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.22);
+  border-radius:var(--rr);color:var(--ac);font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;font-weight:600;text-decoration:none;transition:all .2s;
+}
+.sb-join:hover{background:rgba(0,212,255,.14);border-color:var(--ac);}
+.sb-join .jdot{width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 6px var(--g);animation:pulse 2s infinite;}
+.sb-cat{padding:10px 18px 4px;font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:3px;color:var(--mu);text-transform:uppercase;display:flex;align-items:center;gap:7px;}
+.sb-cat::after{content:'';flex:1;height:1px;background:var(--b1);}
+.sb-lnk{display:flex;align-items:center;gap:8px;padding:8px 18px;font-size:.78rem;color:var(--mu);cursor:pointer;border-left:2px solid transparent;transition:all .15s;font-family:'JetBrains Mono',monospace;text-decoration:none;}
+.sb-lnk:hover{color:var(--ac);background:rgba(0,212,255,.04);border-left-color:var(--di);}
+.sb-lnk.on{color:var(--ac);background:rgba(0,212,255,.08);border-left-color:var(--ac);}
+.sb-lnk .ic{width:16px;text-align:center;font-size:.8rem;}
+.sb-badge{margin-left:auto;font-size:.52rem;padding:2px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace;}
+.bg{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.bo{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.2);color:var(--o);}
+.bd{background:rgba(74,106,128,.1);border:1px solid rgba(74,106,128,.2);color:var(--mu);}
+
+/* ── CONTENT ── */
+.content-wrap{min-height:100vh;}
+.inner{max-width:820px;margin:0 auto;padding:28px 18px 80px;}
+.sec{display:none;min-height:calc(100vh - 60px);flex-direction:column;}
+.sec.on{display:block;animation:fadeUp .25s ease;}
+
+/* ── PAGE HEADER ── */
+.ph{margin-bottom:26px;}
+.ph-pre{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--ac);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;overflow:hidden;}
+.ph-pre::before{content:'>';color:var(--g);flex-shrink:0;}
+.ph-pre::after{content:'';flex:1;min-width:12px;height:1px;background:linear-gradient(90deg,var(--b2),transparent);}
+.ph h2{font-size:clamp(1.5rem,5vw,2.3rem);font-weight:800;letter-spacing:-.5px;line-height:1.2;color:#fff;margin-bottom:8px;}
+.ph h2 .hl{background:linear-gradient(90deg,var(--ac),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ph p{color:var(--mu);font-size:clamp(.86rem,2.2vw,.94rem);line-height:1.8;}
+
+/* ── UI COMPONENTS ── */
+.card{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:16px 18px;margin-bottom:12px;transition:border-color .2s;}
+.card:hover{border-color:var(--di);}
+.ct{font-size:clamp(.88rem,2.5vw,.98rem);font-weight:700;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:7px;}
+.card p,.card li{color:var(--mu);font-size:clamp(.82rem,2vw,.9rem);line-height:1.8;}
+.card ul{padding-left:16px;}.card li{margin-bottom:3px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+@media(max-width:500px){.g2{grid-template-columns:1fr;}}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0;}
+@media(min-width:480px){.stats{grid-template-columns:repeat(4,1fr);}}
+.stat{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:14px;text-align:center;position:relative;overflow:hidden;}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--g));}
+.stat-n{font-size:clamp(1.4rem,4vw,1.8rem);font-weight:800;color:var(--ac);font-family:'JetBrains Mono',monospace;}
+.stat-l{font-size:.6rem;color:var(--mu);font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+.terminal{background:#010c14;border:1px solid var(--b2);border-radius:var(--rr);overflow:hidden;margin:12px 0;}
+.t-bar{background:var(--card);padding:8px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--b1);}
+.td1{width:9px;height:9px;border-radius:50%;background:#ff5f57;}
+.td2{width:9px;height:9px;border-radius:50%;background:#ffbd2e;}
+.td3{width:9px;height:9px;border-radius:50%;background:#28c840;}
+.t-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--mu);margin-left:6px;}
+.t-body{padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:clamp(.68rem,1.8vw,.78rem);line-height:1.9;overflow-x:auto;}
+.tc{color:#2a4060;}.tg{color:var(--g);}.ta{color:var(--ac);}.to{color:var(--o);}
+.pr::before{content:'$ ';color:var(--g);}
+
+.rule{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:13px 15px;margin-bottom:9px;transition:border-color .2s;}
+.rule:hover{border-color:var(--ac);}
+.rule-n{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--ac);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
+.rule-t{font-weight:700;color:#fff;font-size:.88rem;margin-bottom:3px;}
+.rule-d{color:var(--mu);font-size:.82rem;line-height:1.7;}
+
+.rcat{margin-bottom:14px;}
+.rcat-t{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:7px;}
+.rcat-t::after{content:'';flex:1;height:1px;background:var(--b2);}
+.ritem{background:var(--card);border:1px solid var(--b1);border-radius:var(--rr);padding:9px 13px;margin-bottom:5px;display:flex;gap:10px;flex-wrap:wrap;}
+.rname{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ac);font-weight:600;min-width:130px;}
+.rdesc{color:var(--mu);font-size:.8rem;line-height:1.6;flex:1;}
+
+.chg{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);margin-bottom:11px;overflow:hidden;}
+.chg-h{padding:10px 15px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:7px;font-weight:700;color:#fff;font-size:.88rem;background:linear-gradient(90deg,rgba(0,212,255,.04),transparent);}
+.chg-tags{padding:10px 13px;display:flex;flex-wrap:wrap;gap:5px;}
+.ch-tag{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.13);color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:3px 8px;border-radius:3px;}
+.ch-tag::before{content:'# ';}
+.ch-note{padding:3px 13px 10px;color:var(--o);font-size:.7rem;font-family:'JetBrains Mono',monospace;}
+
+.wflow{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0;}
+@media(min-width:540px){.wflow{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:720px){.wflow{grid-template-columns:repeat(6,1fr);}}
+.wfs{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:10px 8px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:clamp(.66rem,1.8vw,.75rem);}
+.wfn{font-size:.56rem;color:var(--ac);margin-bottom:3px;}
+
+.tag{display:inline-block;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.16);color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:3px 8px;border-radius:3px;margin:2px;}
+.tag.g{background:rgba(0,255,136,.07);border-color:rgba(0,255,136,.16);color:var(--g);}
+.tag.o{background:rgba(255,170,0,.07);border-color:rgba(255,170,0,.16);color:var(--o);}
+.tag.r{background:rgba(255,68,102,.07);border-color:rgba(255,68,102,.16);color:var(--r);}
+
+.s-live{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.25);color:var(--g);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:3px 8px;border-radius:3px;white-space:nowrap;}
+.s-test{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.25);color:var(--o);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:3px 8px;border-radius:3px;white-space:nowrap;}
+.s-next{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:3px 8px;border-radius:3px;white-space:nowrap;}
+.s-plan{background:rgba(74,106,128,.1);border:1px solid rgba(74,106,128,.2);color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:3px 8px;border-radius:3px;white-space:nowrap;}
+
+.cmdbox{border:1px solid var(--b2);border-radius:var(--rr);overflow:hidden;margin:11px 0;}
+.cmdtbl{width:100%;border-collapse:collapse;}
+.cmdtbl th{background:rgba(0,212,255,.05);color:var(--ac);padding:9px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--b2);}
+.cmdtbl td{padding:9px 12px;border-bottom:1px solid var(--b1);vertical-align:top;font-size:.82rem;}
+.cmdtbl tr:last-child td{border-bottom:none;}
+.cmdtbl tr:hover td{background:rgba(0,212,255,.03);}
+.cm{color:var(--g);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.78rem;}
+.cx{color:var(--o);font-family:'JetBrains Mono',monospace;font-size:.68rem;display:block;margin-top:2px;}
+.cd{color:var(--mu);font-size:.8rem;line-height:1.6;}
+.wcr{background:rgba(255,170,0,.08);border:1px solid rgba(255,170,0,.2);color:var(--o);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:2px 6px;border-radius:3px;white-space:nowrap;}
+.wall{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--g);font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:2px 6px;border-radius:3px;white-space:nowrap;}
+@media(max-width:480px){.cmdtbl th:nth-child(3),.cmdtbl td:nth-child(3){display:none;}}
+
+.shwrap{overflow-x:auto;border-radius:var(--rr);border:1px solid var(--b2);margin:12px 0;}
+.shtbl{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:clamp(.6rem,1.6vw,.75rem);min-width:460px;}
+.shtbl th{background:rgba(0,212,255,.07);color:var(--ac);padding:8px 10px;text-align:center;border:1px solid var(--b2);}
+.shtbl td{padding:6px 10px;border:1px solid var(--b1);text-align:center;color:var(--mu);}
+.shtbl .dr td{background:rgba(0,212,255,.04);color:var(--ac);}
+.shtbl .lr td{background:rgba(255,170,0,.04);color:var(--o);}
+.shtbl td.nv{color:var(--g);font-weight:700;}
+.shtbl td.zv{color:var(--r);font-weight:700;}
+.shtbl td.nc{text-align:left;color:var(--tx);}
+
+.botcard{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);margin-bottom:11px;overflow:hidden;transition:border-color .2s;}
+.botcard:hover{border-color:var(--ac);}
+.bchdr{padding:15px 17px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;}
+.bico{font-size:1.4rem;flex-shrink:0;margin-top:1px;}
+.binfo{flex:1;min-width:0;}
+.bname{font-size:.92rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;margin-bottom:2px;}
+.btag{color:var(--mu);font-size:.78rem;line-height:1.5;}
+.bbody{display:none;padding:0 17px 15px;border-top:1px solid var(--b1);}
+.bbody.open{display:block;}
+.bdesc{color:var(--mu);font-size:.86rem;line-height:1.8;margin:11px 0;}
+
+.note{background:rgba(255,170,0,.05);border-left:3px solid var(--o);padding:10px 14px;border-radius:0 var(--rr) var(--rr) 0;color:#c8a060;font-size:clamp(.78rem,2vw,.86rem);line-height:1.75;margin:11px 0;}
+.sbox{background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.12);border-radius:var(--rr);padding:13px 15px;margin-bottom:11px;}
+.sbox p{color:#50b880;font-size:clamp(.84rem,2vw,.9rem);line-height:1.8;}
+
+.pnav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:22px;}
+@media(min-width:480px){.pnav{grid-template-columns:repeat(5,1fr);}}
+.pnb{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:9px 5px;font-family:'JetBrains Mono',monospace;font-size:clamp(.62rem,1.5vw,.7rem);font-weight:500;color:var(--mu);cursor:pointer;text-align:center;transition:all .18s;line-height:1.4;}
+.pnb:hover{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.05);}
+.pnb.on{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.1);}
+.pnb .pn{display:block;font-size:.52rem;color:var(--di);margin-bottom:2px;}
+.pslide{display:none;animation:fadeUp .25s ease;}
+.pslide.on{display:block;}
+.pslabel{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.pslabel::after{content:'';flex:1;height:1px;background:var(--b2);}
+.pslide h3{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:800;color:#fff;margin-bottom:18px;letter-spacing:-.3px;}
+.pmain{background:rgba(255,68,102,.05);border:1px solid rgba(255,68,102,.15);border-radius:var(--rr);padding:14px 16px;margin-bottom:12px;}
+.pmain p{color:#c07880;font-size:clamp(.84rem,2vw,.92rem);line-height:1.8;}
+.pc{background:rgba(255,68,102,.04);border:1px solid rgba(255,68,102,.12);border-radius:var(--rr);padding:12px 14px;}
+.pc .ct{color:var(--r);font-size:clamp(.86rem,2vw,.94rem);}
+.pc p{color:#906068;font-size:clamp(.78rem,2vw,.86rem);line-height:1.7;}
+.pflow{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:13px 0;}
+@media(min-width:480px){.pflow{grid-template-columns:repeat(4,1fr);}}
+.pfs{background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:10px 8px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:clamp(.65rem,1.7vw,.75rem);}
+.pfn{font-size:.55rem;color:var(--ac);margin-bottom:2px;}
+.pstats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0;}
+@media(min-width:400px){.pstats{grid-template-columns:repeat(4,1fr);}}
+
+.foot{margin-top:auto;padding:20px 0;border-top:1px solid var(--b1);text-align:center;color:var(--di);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:1px;}
+.foot span{color:var(--ac);}
+
+/* ── WELCOME OVERLAY ── */
+#wc-overlay{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(2,4,8,.97);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;text-align:center;padding:24px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#wc-overlay.hide{opacity:0;visibility:hidden;pointer-events:none;}
+.wc-site{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--ac);letter-spacing:3px;text-transform:uppercase;animation:fadeDown .7s .1s ease both;opacity:0;}
+.wc-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s infinite;margin-right:6px;vertical-align:middle;}
+.wc-title{font-family:'JetBrains Mono',monospace;font-size:clamp(1.6rem,6vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.1;animation:fadeDown .7s .2s ease both;opacity:0;}
+.wc-title span{background:linear-gradient(90deg,var(--ac),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wc-college{font-family:'JetBrains Mono',monospace;font-size:clamp(.6rem,2vw,.72rem);color:var(--mu);letter-spacing:2px;text-transform:uppercase;margin-top:4px;animation:fadeDown .7s .3s ease both;opacity:0;}
+.wc-divider{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--ac),transparent);margin:8px auto;animation:fadeIn .7s .4s ease both;opacity:0;}
+.wc-by{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--di);letter-spacing:1px;animation:fadeUp .7s .5s ease both;opacity:0;}
+.wc-by span{color:var(--ac);}
+.wc-btn{
+  margin-top:20px;
+  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));
+  border:1px solid rgba(0,212,255,.4);
+  color:#fff;font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;font-weight:700;letter-spacing:2px;
+  padding:12px 32px;border-radius:6px;cursor:pointer;
+  text-transform:uppercase;
+  animation:fadeUp .7s .6s ease both;opacity:0;
+  transition:all .2s;
+}
+.wc-btn:hover{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));transform:translateY(-2px);box-shadow:0 0 24px rgba(0,212,255,.2);}
+.wc-timer{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--di);letter-spacing:1px;margin-top:6px;animation:fadeUp .7s .7s ease both;opacity:0;}
+.wc-timer span{color:var(--mu);}
+/* grid bg inside overlay */
+#wc-overlay::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.02) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;}
+#wc-overlay::after{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 65%);pointer-events:none;}
+
+
+/* ── WHAT'S NEW POPUP ──────────────────────────── */
+#wn-fab{display:none;position:fixed;bottom:24px;right:20px;z-index:1000;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));border:1px solid rgba(0,212,255,.4);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.5px;padding:9px 16px;border-radius:20px;cursor:pointer;box-shadow:0 0 20px rgba(0,212,255,.12);transition:all .2s;}
+#wn-fab:hover{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));box-shadow:0 0 32px rgba(0,212,255,.22);transform:translateY(-2px);}
+#wn-dot{width:7px;height:7px;border-radius:50%;background:var(--o);box-shadow:0 0 8px var(--o);display:none;animation:pulse 2s infinite;}
+#wn-dot.show{display:inline-block;}
+#wn-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1001;}
+#wn-backdrop.show{display:block;}
+#wn-popup{position:fixed;bottom:72px;right:20px;width:310px;z-index:1002;background:#060d14;border:1px solid rgba(0,212,255,.25);border-radius:10px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 0 1px rgba(0,212,255,.08);transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .22s ease;}
+#wn-popup.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
+#wn-header{background:linear-gradient(90deg,rgba(0,212,255,.12),rgba(0,255,136,.06));border-bottom:1px solid rgba(0,212,255,.15);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;}
+#wn-title{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;color:#fff;margin-bottom:3px;}
+#wn-version-line{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--ac);letter-spacing:.5px;}
+#wn-close{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--mu);border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+#wn-close:hover{background:rgba(255,68,102,.15);border-color:var(--r);color:var(--r);}
+#wn-body{padding:12px 14px;max-height:230px;overflow-y:auto;}
+#wn-body::-webkit-scrollbar{width:3px;}
+#wn-body::-webkit-scrollbar-thumb{background:var(--b2);}
+.wn-item{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid rgba(0,212,255,.06);align-items:flex-start;}
+.wn-item:last-child{border-bottom:none;}
+.wn-tag{font-family:'JetBrains Mono',monospace;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:3px;white-space:nowrap;margin-top:1px;flex-shrink:0;text-transform:uppercase;letter-spacing:.5px;}
+.wn-tag.new{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--ac);}
+.wn-tag.improved{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.25);color:var(--o);}
+.wn-tag.fixed{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.wn-text{font-size:.78rem;color:#a0b8cc;line-height:1.5;}
+#wn-footer{border-top:1px solid rgba(0,212,255,.08);padding:8px 14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--di);letter-spacing:.5px;}
+
+/* ══════════════════════════════
+   GLOBAL FOOTER
+══════════════════════════════ */
+#global-footer{
+  background:var(--surf);
+  border-top:1px solid var(--b1);
+  position:relative;z-index:10;
+  margin-left:0;
+}
+@media(min-width:900px){
+  #global-footer{ margin-left:256px; }
+}
+.gf-wrap{
+  max-width:820px;margin:0 auto;
+  padding:40px 18px 24px;
+}
+.gf-top{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+}
+@media(min-width:640px){
+  .gf-top{ grid-template-columns:1.4fr 2fr; }
+}
+/* Brand */
+.gf-logo{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:12px;
+}
+.gf-logo-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.88rem;font-weight:700;color:#fff;
+}
+.gf-logo-sub{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;color:var(--ac);letter-spacing:1px;
+}
+.gf-tagline{
+  font-size:.8rem;color:var(--mu);line-height:1.75;
+  margin-bottom:16px;max-width:280px;
+}
+.gf-socials{
+  display:flex;gap:8px;
+}
+.gf-soc{
+  width:30px;height:30px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;transition:all .18s;
+  border:1px solid var(--b2);
+}
+.gf-soc-wa{ background:rgba(37,211,102,.06);color:#25d366; }
+.gf-soc-wa:hover{ background:rgba(37,211,102,.18);border-color:#25d366; }
+.gf-soc-ig{ background:rgba(228,64,95,.06);color:#e4405f; }
+.gf-soc-ig:hover{ background:rgba(228,64,95,.18);border-color:#e4405f; }
+.gf-soc-em{ background:rgba(0,212,255,.06);color:var(--ac); }
+.gf-soc-em:hover{ background:rgba(0,212,255,.15);border-color:var(--ac); }
+/* Nav columns */
+.gf-cols{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+@media(max-width:400px){
+  .gf-cols{ grid-template-columns:1fr 1fr; }
+}
+.gf-col-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.58rem;letter-spacing:2.5px;
+  color:var(--ac);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.gf-lnk{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;color:var(--mu);
+  text-decoration:none;padding:4px 0;
+  cursor:pointer;transition:color .15s;
+  line-height:1.5;
+}
+.gf-lnk:hover{ color:#fff; }
+/* Divider */
+.gf-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--b2),transparent);
+  margin:28px 0 20px;
+}
+/* Bottom */
+.gf-bottom{
+  display:flex;flex-wrap:wrap;
+  align-items:center;justify-content:space-between;
+  gap:10px;
+}
+.gf-copy{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:var(--di);letter-spacing:.5px;
+}
+.gf-built{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;
+}
+.gf-built-label{ color:var(--di); }
+.gf-built-val{ color:var(--mu); }
+.gf-agency{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:var(--di);
+}
+.gf-agency-link{
+  color:var(--ac);text-decoration:none;
+  transition:color .15s;
+}
+.gf-agency-link:hover{ color:var(--g); }
+
+/* ── FAQ ──────────────────────────────────────────── */
+.faq-search-wrap{position:relative;margin-bottom:20px;}
+.faq-search-wrap input{width:100%;background:var(--card);border:1px solid var(--b2);border-radius:var(--rr);padding:10px 14px 10px 36px;color:var(--tx);font-family:'JetBrains Mono',monospace;font-size:.82rem;outline:none;transition:border-color .2s;}
+.faq-search-wrap input::placeholder{color:var(--di);}
+.faq-search-wrap input:focus{border-color:var(--ac);}
+.faq-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--mu);font-size:.9rem;pointer-events:none;}
+.faq-no-results{text-align:center;padding:32px 16px;color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:.82rem;}
+.faq-ask-card{margin-top:16px;background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(0,255,136,.03));border:1px solid rgba(0,212,255,.2);border-radius:var(--rr);padding:18px 20px;text-align:left;}
+.faq-ask-card .ask-title{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--ac);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.faq-ask-card .ask-desc{color:var(--mu);font-size:.82rem;line-height:1.7;margin-bottom:14px;font-family:'Inter',sans-serif;}
+.faq-ask-btns{display:flex;gap:9px;flex-wrap:wrap;}
+.faq-ask-btn{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;padding:9px 16px;border-radius:6px;cursor:pointer;text-decoration:none;transition:all .18s;border:none;}
+.faq-ask-btn.primary{background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));border:1px solid rgba(0,212,255,.4);color:#fff;}
+.faq-ask-btn.primary:hover{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));transform:translateY(-2px);box-shadow:0 0 20px rgba(0,212,255,.15);}
+.faq-ask-btn.secondary{background:transparent;border:1px solid var(--b2);color:var(--mu);}
+.faq-ask-btn.secondary:hover{border-color:rgba(88,101,242,.6);color:#7289da;background:rgba(88,101,242,.08);}
+.faq-cat-title{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2.5px;color:var(--ac);text-transform:uppercase;margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--b1);}
+.faq-cat-title span{font-size:.9rem;}
+.faq-item{border:1px solid var(--b2);border-radius:var(--rr);margin-bottom:6px;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:var(--di);}
+.faq-item.open{border-color:rgba(0,212,255,.3);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;cursor:pointer;gap:10px;}
+.faq-q-text{font-size:.88rem;color:#fff;font-weight:500;line-height:1.5;}
+.faq-item.open .faq-q-text{color:var(--ac);}
+.faq-chevron{color:var(--mu);font-size:.7rem;flex-shrink:0;transition:transform .2s;}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--ac);}
+.faq-a{display:none;padding:0 15px 13px;color:var(--mu);font-size:.84rem;line-height:1.8;border-top:1px solid var(--b1);}
+.faq-a.open{display:block;}
+.faq-a code{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:1px 6px;border-radius:4px;}
+.faq-stats{display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+.faq-stat{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--mu);}
+.faq-stat span{color:var(--ac);font-weight:700;}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK38RGJKLB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DK38RGJKLB');
+</script>
+</head>
+<body>
+<!-- ── LOADING SCREEN ── -->
+<div id="loader">
+  <div class="ld-cap">
+    <div class="ld-board"></div>
+    <div class="ld-pole"></div>
+    <div class="ld-cyl"></div>
+    <div class="ld-tassel"></div>
+  </div>
+  <div class="ld-title">KSV UNIVERSITY</div>
+  <div class="ld-bar-wrap"><div class="ld-bar" id="ld-bar"></div></div>
+  <div class="ld-sub" id="ld-txt">Initializing...</div>
+</div>
+<div class="blob1"></div>
+<div class="blob2"></div>
+
+<!-- ══════════════ WELCOME OVERLAY ══════════════ -->
+<div id="wc-overlay">
+  <div class="wc-site"><span class="wc-dot"></span>KSV University · Official Discord</div>
+  <div class="wc-title">Welcome to<br/><span>Discord Ecosystem</span></div>
+  <div class="wc-college">NPCCSM · Kadi Sarva Vishwavidyalaya</div>
+  <div class="wc-divider"></div>
+  <div class="wc-by">Created by <span>RenGoku</span> · Niora Digital Solutions</div>
+  <button class="wc-btn" id="wc-enter-btn">Enter Site →</button>
+  <div class="wc-timer">Auto closing in <span id="wc-count">5</span>s...</div>
+</div>
+<div id="hero">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--mu);letter-spacing:2px;margin-bottom:12px;animation:fadeDown .8s .05s ease both;">v2.1 · LAST UPDATED · 13/04/2026</div>
+  <div class="hero-badge"><span class="badge-dot"></span>KSV University · Official Discord</div>
+  <h1 class="hero-title"><span class="hl">Discord</span><br/>Ecosystem</h1>
+  <div class="hero-sub-title">NPCCSM · Bot Suite &amp; Server Docs</div>
+  <p class="hero-desc">A centralized communication platform for students, faculty, and staff — powered by custom-built Discord bots made at NPCCSM.</p>
+  <div class="hero-btns">
+    <a href="https://discord.gg/srTDAf2Qzh" target="_blank" class="btn-join">🎮 Join Discord Server</a>
+    <button class="btn-enter" onclick="enterApp()">Explore Docs &amp; Bots →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">500+</div><div class="hstat-l">Members</div></div>
+    <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Departments</div></div>
+    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Bots Built</div></div>
+    <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Online</div></div>
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--di);letter-spacing:1px;margin-bottom:16px;animation:fadeDown .8s .5s ease both;">Created by <span style="color:var(--ac);">RenGoku</span> · 2026<br>Niora Digital Solutions</div>
+  <div class="hero-scroll" onclick="enterApp()">
+    <span>SCROLL DOWN</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</div>
+
+<!-- ══════════════ APP ══════════════ -->
+<div id="app">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="hbtn" onclick="openSB()">☰</button>
+    
+    <span class="tb-name" id="tb-section-name">KSV · Discord Ecosystem</span>
+    <button class="tb-home" onclick="goHome()">⌂ Home</button>
+    <a href="https://discord.gg/srTDAf2Qzh" target="_blank" class="tb-join">🎮 Join</a>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeSB()"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sb-top">
+      <div class="sb-srv"><span class="sb-dot"></span>KSV University</div>
+      <div class="sb-title">Discord Ecosystem</div>
+      <div class="sb-sub">NPCCSM · Bot Suite v2.0</div>
+    </div>
+    <a href="https://discord.gg/srTDAf2Qzh" target="_blank" class="sb-join"><span class="jdot"></span>Join Discord Server</a>
+    <div class="sb-cat">Server Docs</div>
+    <a class="sb-lnk on" onclick="nav('overview',this)"><span class="ic">📌</span>Overview</a>
+    <a class="sb-lnk" onclick="nav('rules',this)"><span class="ic">📜</span>Rules</a>
+    <a class="sb-lnk" onclick="nav('roles',this)"><span class="ic">🛡️</span>Roles</a>
+    <a class="sb-lnk" onclick="nav('channels',this)"><span class="ic">💬</span>Channels</a>
+    <a class="sb-lnk" onclick="nav('security',this)"><span class="ic">🔒</span>Security</a>
+    <a class="sb-lnk" onclick="nav('workflow',this)"><span class="ic">🔄</span>Workflow</a>
+    <a class="sb-lnk" onclick="nav('serverbots',this)"><span class="ic">🤖</span>Server Bots</a>
+    <div class="sb-cat">Why Discord?</div>
+    <a class="sb-lnk" onclick="nav('whydiscord',this)"><span class="ic">💡</span>Why Discord?</a>
+    <div class="sb-cat">Bot Ecosystem</div>
+    <a class="sb-lnk" onclick="nav('bots',this)"><span class="ic">🚀</span>All Bots</a>
+    <a class="sb-lnk" onclick="nav('attendance',this)"><span class="ic">📋</span>Attendance Bot<span class="sb-badge bg">LIVE</span></a>
+    <a class="sb-lnk" onclick="nav('notes',this)"><span class="ic">📚</span>Notes Bot<span class="sb-badge bg">LIVE</span></a>
+    <a class="sb-lnk" onclick="nav('result',this)"><span class="ic">📊</span>Result Bot<span class="sb-badge bo">BETA</span></a>
+    <a class="sb-lnk" onclick="nav('roadmap',this)"><span class="ic">🗺️</span>Roadmap<span class="sb-badge bd">+4</span></a>
+    <div class="sb-cat">Support</div>
+    <a class="sb-lnk" onclick="nav('faq',this)"><span class="ic">❓</span>Help / FAQ</a>
+    <a class="sb-lnk" onclick="nav('feedback',this)"><span class="ic">💌</span>Help &amp; Feedback</a>
+    <a class="sb-lnk" onclick="nav('contact',this)"><span class="ic">👨‍💻</span>About Developer</a>
+    <a class="sb-lnk" onclick="nav('services',this)"><span class="ic">⚡</span>Our Services</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+  <div class="inner">
+
+  <!-- OVERVIEW -->
+  <div class="sec on" id="sec-overview">
+    <div class="ph"><div class="ph-pre">Server Documentation · v2.0 · 12/04/2026</div><h2><span class="hl">KSV University</span> Discord Server</h2><p>A centralized communication platform for students, faculty, and staff. Improves academic coordination, resource sharing, and community engagement.</p></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Members</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Departments</div></div>
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Divisions</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Bots Built</div></div>
+    </div>
+    <div class="card"><div class="ct">🎯 Purpose</div><ul><li>Sharing academic announcements</li><li>Discussing study topics and coursework</li><li>Providing exam and academic information</li><li>Connecting students with faculty members</li><li>Sharing study resources and important updates</li></ul></div>
+    <div class="g2">
+      <div class="card"><div class="ct">👥 Who Can Join</div><p>Open to everyone via invite link. Access controlled through roles — students access only their department, year and division channels.</p></div>
+      <div class="card"><div class="ct">📊 Expected Members</div><p>Current: 500–700 members. Growing as the university community expands across departments.</p></div>
+    </div>
+    <div class="terminal"><div class="t-bar"><div class="td1"></div><div class="td2"></div><div class="td3"></div><span class="t-lbl">server_info.sh</span></div><div class="t-body"><span class="tc"># KSV University Discord Server</span><br/><span class="tg">university</span> <span class="ta">KSV University – Kadi</span><br/><span class="tg">college</span>    <span class="ta">NPCCSM (Narsinhbhai Patel College of Computer Studies & Management)</span><br/><span class="tg">version</span>    <span class="to">2.0</span><br/><span class="tg">created_by</span> <span class="ta">RenGoku</span><br/><span class="tg">github</span>     <span class="ta">github.com/vadaliavraj0214-creator/Attendance-Bot</span></div></div>
+      
+  </div>
+
+  <!-- RULES -->
+  <div class="sec" id="sec-rules">
+    <div class="ph"><div class="ph-pre">Server Rules</div><h2><span class="hl">Server</span> Guidelines</h2><p>Follow these rules to maintain a respectful and academic environment for everyone.</p></div>
+    <div class="sbox"><p>✅ By staying in this server, you agree to follow all the rules below.</p></div>
+    <div class="rule"><div class="rule-n">1</div><div><div class="rule-t">Respect & Professional Behaviour</div><div class="rule-d">Everyone deserves respect — students, faculty, and staff. Harassment, toxic language, or discrimination is not allowed.</div></div></div>
+    <div class="rule"><div class="rule-n">2</div><div><div class="rule-t">No Spam / Self Promotion</div><div class="rule-d">Unnecessary messages, advertisements, or repeated content without permission are prohibited.</div></div></div>
+    <div class="rule"><div class="rule-n">3</div><div><div class="rule-t">Use Proper Channels</div><div class="rule-d">Post messages in the correct category. Announcement channels are read-only for students.</div></div></div>
+    <div class="rule"><div class="rule-n">4</div><div><div class="rule-t">Academic Environment Only</div><div class="rule-d">This server is for university communication and studies. NSFW content is strictly forbidden.</div></div></div>
+    <div class="rule"><div class="rule-n">5</div><div><div class="rule-t">Follow Faculty & Admin Decisions</div><div class="rule-d">Moderators and faculty instructions must be respected at all times.</div></div></div>
+    <div class="rule"><div class="rule-n">6</div><div><div class="rule-t">Privacy & Safety</div><div class="rule-d">Do not share personal numbers, private screenshots, or sensitive information.</div></div></div>
+      
+  </div>
+
+  <!-- ROLES -->
+  <div class="sec" id="sec-roles">
+    <div class="ph"><div class="ph-pre">Role Structure</div><h2><span class="hl">Server</span> Roles</h2><p>Structured role hierarchy to manage permissions, responsibilities, and access control.</p></div>
+    <div class="rcat"><div class="rcat-t">🛡️ Administrative</div><div class="ritem"><div class="rname">Owner</div><div class="rdesc">Full control of the server including permissions, roles, channels, and security.</div></div><div class="ritem"><div class="rname">Server Manager</div><div class="rdesc">Assists the owner in managing server structure, channels, and moderation.</div></div></div>
+    <div class="rcat"><div class="rcat-t">🎓 Academic Authority</div><div class="ritem"><div class="rname">BCA – HOD</div><div class="rdesc">Head of Department responsible for department-level communication.</div></div><div class="ritem"><div class="rname">BCA – Faculty</div><div class="rdesc">Faculty members who provide announcements, academic information, and student guidance.</div></div></div>
+    <div class="rcat"><div class="rcat-t">🏢 Staff</div><div class="ritem"><div class="rname">Lab Operator</div><div class="rdesc">Responsible for lab-related communication and support.</div></div><div class="ritem"><div class="rname">Clerk Office</div><div class="rdesc">Administrative communication and documentation support.</div></div><div class="ritem"><div class="rname">KSV Security</div><div class="rdesc">Security monitoring and server protection.</div></div></div>
+    <div class="rcat"><div class="rcat-t">📚 Department / Year / Division</div><div class="ritem"><div class="rname">BCA / BBA / B.Com</div><div class="rdesc">Department access roles — control which department channels members can see.</div></div><div class="ritem"><div class="rname">FYBCA / SYBCA / TYBCA</div><div class="rdesc">Academic year roles — control access to year-specific channels.</div></div><div class="ritem"><div class="rname">*BCA – A/B/C/D</div><div class="rdesc">Division roles for each year — 12 divisions total.</div></div></div>
+    <div class="rcat"><div class="rcat-t">👤 Student</div><div class="ritem"><div class="rname">Boy / Girl</div><div class="rdesc">Student gender identification role.</div></div><div class="ritem"><div class="rname">CR / LR</div><div class="rdesc">Class/Lab Representative — manages attendance bot and class info.</div></div></div>
+    <div class="rcat"><div class="rcat-t">⚙️ System</div><div class="ritem"><div class="rname">Bots</div><div class="rdesc">Used for automation and moderation.</div></div><div class="ritem"><div class="rname">@everyone</div><div class="rdesc">Default role assigned to all members.</div></div></div>
+      
+  </div>
+
+  <!-- CHANNELS -->
+  <div class="sec" id="sec-channels">
+    <div class="ph"><div class="ph-pre">Channel Structure</div><h2><span class="hl">Server</span> Channels</h2><p>Organized into categories to keep communication structured and easy to navigate.</p></div>
+    <div class="chg"><div class="chg-h">👋 Welcome & Information</div><div class="chg-tags"><span class="ch-tag">Welcome</span><span class="ch-tag">Permanent Link</span><span class="ch-tag">Server Guidelines</span><span class="ch-tag">Moderator Only</span></div></div>
+    <div class="chg"><div class="chg-h">💬 General</div><div class="chg-tags"><span class="ch-tag">Announcement</span><span class="ch-tag">General Chat</span><span class="ch-tag">General VC</span></div></div>
+    <div class="chg"><div class="chg-h">🖥️ BCA Department</div><div class="chg-tags"><span class="ch-tag">BCA General Chat</span><span class="ch-tag">BCA General Information</span><span class="ch-tag">BCA Exam Information</span><span class="ch-tag">BCA Ask Faculty</span><span class="ch-tag">BCA General VC</span></div></div>
+    <div class="chg"><div class="chg-h">1️⃣ FYBCA</div><div class="chg-tags"><span class="ch-tag">FYBCA General Chat</span><span class="ch-tag">FYBCA General Information</span><span class="ch-tag">FYBCA Exam Information</span><span class="ch-tag">FYBCA Ask Faculty</span><span class="ch-tag">FYBCA Study Resources</span><span class="ch-tag">FYBCA General VC</span></div><div class="ch-note">📌 Each division (A/B/C/D): General Chat · Info · Exam Info · Ask Faculty · Study Resources · VC</div></div>
+    <div class="chg"><div class="chg-h">2️⃣ SYBCA</div><div class="chg-tags"><span class="ch-tag">SYBCA General Chat</span><span class="ch-tag">SYBCA General Information</span><span class="ch-tag">SYBCA Exam Information</span><span class="ch-tag">SYBCA Ask Faculty</span><span class="ch-tag">SYBCA Study Resources</span><span class="ch-tag">SYBCA General VC</span></div><div class="ch-note">📌 Divisions: SYBCA – A · B · C · D</div></div>
+    <div class="chg"><div class="chg-h">3️⃣ TYBCA</div><div class="chg-tags"><span class="ch-tag">TYBCA General Chat</span><span class="ch-tag">TYBCA General Information</span><span class="ch-tag">TYBCA Exam Information</span><span class="ch-tag">TYBCA Ask Faculty</span><span class="ch-tag">TYBCA Study Resources</span><span class="ch-tag">TYBCA General VC</span></div></div>
+    <div class="chg"><div class="chg-h">🏫 Faculty & Staff Zones</div><div class="chg-tags"><span class="ch-tag">Faculty Announcement</span><span class="ch-tag">Faculty Chat</span><span class="ch-tag">Faculty Resources</span><span class="ch-tag">Faculty VC</span><span class="ch-tag">Cross Department Chat</span><span class="ch-tag">Clerk General Chat</span><span class="ch-tag">Clerk Documents</span><span class="ch-tag">Clerk VC</span><span class="ch-tag">Lab General Chat</span><span class="ch-tag">Lab VC</span></div></div>
+      
+  </div>
+
+  <!-- SECURITY -->
+  <div class="sec" id="sec-security">
+    <div class="ph"><div class="ph-pre">Security</div><h2><span class="hl">Security</span> Measures</h2><p>Multiple security practices to protect the community and maintain a safe environment.</p></div>
+    <div class="card"><div class="ct">🔐 2FA Required</div><p>Two-Factor Authentication required for all moderation actions.</p></div>
+    <div class="card"><div class="ct">🏗️ Strict Role Hierarchy</div><p>Role structure prevents permission misuse — each role has only what it needs.</p></div>
+    <div class="card"><div class="ct">👑 Limited Admin Access</div><p>Administrative permissions are limited to trusted, verified members only.</p></div>
+    <div class="card"><div class="ct">🤖 Bot Monitoring</div><p>Security monitoring through dedicated bots running 24/7.</p></div>
+      
+  </div>
+
+  <!-- WORKFLOW -->
+  <div class="sec" id="sec-workflow">
+    <div class="ph"><div class="ph-pre">Workflow</div><h2><span class="hl">Student</span> Journey</h2><p>Typical workflow from joining the server to participating in the community.</p></div>
+    <div class="wflow">
+      <div class="wfs"><div class="wfn">01</div>Join Server</div>
+      <div class="wfs"><div class="wfn">02</div>Select Role</div>
+      <div class="wfs"><div class="wfn">03</div>Read Guidelines</div>
+      <div class="wfs"><div class="wfn">04</div>Access Dept Channels</div>
+      <div class="wfs"><div class="wfn">05</div>Access Division</div>
+      <div class="wfs"><div class="wfn">06</div>Participate 🎉</div>
+    </div>
+      
+  </div>
+
+  <!-- SERVER BOTS -->
+  <div class="sec" id="sec-serverbots">
+    <div class="ph"><div class="ph-pre">Bots</div><h2><span class="hl">Server</span> Bots</h2><p>Bots currently active in the KSV University Discord server.</p></div>
+    <div class="card"><div class="ct">🔐 KSV University Security Bot</div><p>Server security and monitoring — custom built for KSV University.</p><div style="margin-top:8px;"><span class="tag r">security</span></div></div>
+    <div class="card"><div class="ct">🛡️ Dyno</div><p>Moderation and automation — handles auto-mod, custom commands, and server management.</p><div style="margin-top:8px;"><span class="tag g">utility</span></div></div>
+    <div class="card"><div class="ct">📋 Que</div><p>Queue and utility functions for the server.</p><div style="margin-top:8px;"><span class="tag g">utility</span></div></div>
+      
+  </div>
+
+  <!-- ALL BOTS -->
+  <div class="sec" id="sec-bots">
+    <div class="ph"><div class="ph-pre">NPCCSM · Bot Ecosystem</div><h2><span class="hl">Bot</span> Ecosystem</h2><p>A complete suite of utility bots built for NPCCSM students. Click any bot to expand details.</p></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b1')"><div class="bico">📋</div><div class="binfo"><div class="bname">Attendance Bot</div><div class="btag">Automated attendance tracking via Google Sheets</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b1"><p class="bdesc">Tracks lecture-wise attendance for 60+ students. CR/LR marks attendance via commands. Students check their own % via !report — report sent to DM. Auto-calculates percentages, flags defaulters.</p><div style="margin-top:14px;"><button onclick="nav('attendance',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📋 VIEW FULL DETAILS →</button></div></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b2')"><div class="bico">📚</div><div class="binfo"><div class="bname">Notes Bot</div><div class="btag">Subject-wise study notes delivered to your DM</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">Google Drive</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b2"><p class="bdesc">Access subject-wise PDF notes directly in Discord. Use !notes → select your year (FYBCA/SYBCA/TYBCA) → pick subject → PDF link arrives in your DM. Role-gated — only accessible after joining the server and getting your year role.</p><div style="margin-top:14px;"><button onclick="nav('notes',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📚 VIEW FULL DETAILS →</button></div></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b3')"><div class="bico">📊</div><div class="binfo"><div class="bname">Result Bot</div><div class="btag">Check internal & external marks via Exam Number</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">Slash Commands</span></div></div><div><span class="s-test">TESTING</span></div></div><div class="bbody" id="b3"><p class="bdesc">Students enter Exam No via modal popup → marks sent ephemerally. CR/LR links marks sheet per channel. Supports Internal 1–5 and External tabs.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b4')"><div class="bico">🪪</div><div class="binfo"><div class="bname">Exam No Bot</div><div class="btag">Enrollment No → Exam No + Subject codes</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-next">UP NEXT</span></div></div><div class="bbody" id="b4"><p class="bdesc">Enter Enrollment No → Get Exam No + Subject codes. Built because the college gave zero notification about exams and the clerk refused to help.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b5')"><div class="bico">📅</div><div class="binfo"><div class="bname">Exam Timetable Bot</div><div class="btag">Query exam schedule anytime</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="b5"><p class="bdesc">Search exam schedule by date or subject. No more hunting screenshots in WhatsApp groups.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b6')"><div class="bico">🔔</div><div class="binfo"><div class="bname">Reminder Bot</div><div class="btag">Never miss a deadline again</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="b6"><p class="bdesc">Schedule custom reminders for assignments, submissions, and exam dates — right inside Discord.</p></div></div>
+      
+  </div>
+
+  <!-- ATTENDANCE DETAIL -->
+  <div class="sec" id="sec-attendance">
+    <div class="ph">
+      <div class="ph-pre">Bot · Live & Deployed</div><h2><span class="hl">Attendance</span> Bot</h2><p>Automated attendance tracking for 60+ students via Google Sheets and Discord commands.</p></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">60+</div><div class="stat-l">Students</div></div>
+      <div class="stat"><div class="stat-n">11</div><div class="stat-l">Commands</div></div>
+      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Online</div></div>
+      <div class="stat"><div class="stat-n">0</div><div class="stat-l">Manual work</div></div>
+    </div>
+    <div class="cmdbox"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
+      <tr><td><span class="cm">!help</span></td><td><span class="cd">Shows all available commands.</span></td><td><span class="wall">Everyone</span></td></tr>
+      <tr><td><span class="cm">!upload</span><span class="cx">!upload &lt;sheet_id&gt;</span></td><td><span class="cd">Connect bot to a Google Sheet.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!date</span><span class="cx">!date 09-04-2026</span></td><td><span class="cd">Set today's attendance date.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!lecture</span><span class="cx">!lecture 3</span></td><td><span class="cd">Set total lectures for today.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!set</span><span class="cx">!set 05 3</span></td><td><span class="cd">Mark lectures attended today by Roll No.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!holiday</span><span class="cx">!holiday 14-04-2026</span></td><td><span class="cd">Mark a date as holiday.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!reset</span><span class="cx">!reset 09-04-2026 05 2</span></td><td><span class="cd">Fix a wrong attendance entry.</span></td><td><span class="wcr">CR/LR</span></td></tr>
+      <tr><td><span class="cm">!report</span><span class="cx">!report 05</span></td><td><span class="cd">Attendance % — CR/LR/Faculty → channel, Students → DM 📬</span></td><td><span class="wall">Everyone</span></td></tr>
+      <tr><td><span class="cm">!low</span></td><td><span class="cd">Students below 70% attendance.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
+      <tr><td><span class="cm">!high</span></td><td><span class="cd">Students at 95%+ attendance.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
+      <tr><td><span class="cm">!check</span><span class="cx">!check 09-04-2026</span></td><td><span class="cd">Who attended on a specific date.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
+    </tbody></table></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin:16px 0 8px;">Google Sheet Format</div>
+    <div class="shwrap"><table class="shtbl"><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr></thead><tbody>
+      <tr><td>Sr.No</td><td>Ro.No</td><td>ID No</td><td class="nc">Name</td><td colspan="4" style="color:var(--o);font-size:.65rem;">Dates →</td></tr>
+      <tr class="dr"><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>2</td><td>3</td><td>7</td></tr>
+      <tr class="lr"><td>—</td><td>—</td><td>—</td><td>—</td><td>Mon(3)</td><td>Tue(2)</td><td>Wed(4)</td><td>Mon(3)</td></tr>
+      <tr><td>1</td><td>01</td><td>NPC001</td><td class="nc">Vraj</td><td class="nv">3</td><td class="nv">2</td><td class="zv">0</td><td class="nv">3</td></tr>
+      <tr><td>2</td><td>02</td><td>NPC002</td><td class="nc">Yatra</td><td class="nv">3</td><td class="zv">0</td><td class="zv">0</td><td class="nv">3</td></tr>
+      <tr><td>3</td><td>03</td><td>NPC003</td><td class="nc">Kalp</td><td class="zv">0</td><td class="nv">2</td><td class="nv">4</td><td class="nv">3</td></tr>
+    </tbody></table></div>
+    <div class="note">📌 <strong>Row 1</strong> — Headers (manual) | <strong>Row 2</strong> — Date numbers (bot) | <strong>Row 3</strong> — Day+Lectures Mon(3) (bot) | <strong>Row 4+</strong> — Lectures attended (bot)</div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <button onclick="nav('pres', null)" 
+        style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.9rem;padding:14px 32px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">
+        🎯 VIEW PRESENTATION →
+      </button>
+      <p style="font-size:.75rem;color:var(--mu);margin-top:8px;">Interactive slide deck — Attendance Bot explained</p>
+    </div>
+      
+  </div>
+
+  <!-- RESULT BOT -->
+  <div class="sec" id="sec-result">
+    <div class="ph">
+      <div class="ph-pre">Bot · Local Testing</div><h2><span class="hl">Result</span> Bot</h2><p>Check internal and external marks privately via Exam Number — directly in Discord.</p></div>
+    <div class="card"><div class="ct">📊 How it works</div><p>CR/LR links a Google Sheet per channel using /link. Students click a button → select tab (Internal 1–5 or External) → enter Exam No in modal → get marks ephemerally (only they can see).</p></div>
+    <div class="cmdbox"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
+      <tr><td><span class="cm">/link</span><span class="cx">/link Internal https://...</span></td><td><span class="cd">Link a Google Sheet to this channel with a label.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
+      <tr><td><span class="cm">/unlink</span><span class="cx">/unlink Internal</span></td><td><span class="cd">Remove a linked sheet from this channel.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
+      <tr><td><span class="cm">/result</span><span class="cx">/result</span></td><td><span class="cd">Check your marks — tab → Exam No → ephemeral result.</span></td><td><span class="wall">Everyone</span></td></tr>
+    </tbody></table></div>
+      
+  </div>
+
+  <!-- NOTES BOT -->
+  <div class="sec" id="sec-notes">
+    <div class="ph">
+      <div class="ph-pre">Bot · Live & Deployed</div><h2><span class="hl">Notes</span> Bot</h2><p>Subject-wise PDF study notes delivered directly to your Discord DM — role-gated, organized by year and subject.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="pstats" style="margin-bottom:20px;">
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Years</div></div>
+      <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Subjects</div></div>
+      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Online</div></div>
+      <div class="stat"><div class="stat-n">1</div><div class="stat-l">Command</div></div>
+    </div>
+
+    <!-- Problem -->
+    <div class="card" style="margin-bottom:14px;">
+      <div class="ct">❌ The Problem</div>
+      <p>Study notes were scattered across WhatsApp groups, personal drives, and random Telegram forwards. Finding the right notes for the right subject at the right time was a mess — wrong files, outdated versions, missing subjects.</p>
+    </div>
+
+    <!-- Solution -->
+    <div class="card" style="margin-bottom:14px;background:rgba(0,255,136,.04);border-color:rgba(0,255,136,.15);">
+      <div class="ct" style="color:var(--g);">✅ The Solution</div>
+      <p>One command → year-based role check → subject buttons → PDF link DM'd instantly. Notes are stored on Google Drive, organized by year (FYBCA/SYBCA/TYBCA) and subject. Only Discord members with the correct year role can access their notes.</p>
+    </div>
+
+    <!-- How it works -->
+    <div class="card" style="margin-bottom:14px;">
+      <div class="ct">📚 How it Works</div>
+      <p>Student types <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">!notes</span> in their division channel → bot detects their year role (FYBCA/SYBCA/TYBCA) → sends subject buttons → student picks subject → PDF link arrives in DM instantly from Google Drive.</p>
+    </div>
+
+    <!-- Flow -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⚡ Usage Flow</div>
+    <div class="pflow" style="margin-bottom:20px;">
+      <div class="pfs"><div class="pfn">01</div>Type !notes</div>
+      <div class="pfs"><div class="pfn">02</div>Bot checks year role</div>
+      <div class="pfs"><div class="pfn">03</div>Subject buttons appear</div>
+      <div class="pfs"><div class="pfn">04</div>Pick your subject</div>
+      <div class="pfs"><div class="pfn">05</div>PDF link → DM 📬</div>
+    </div>
+
+    <!-- Command -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⌨️ Commands</div>
+    <div class="cmdbox" style="margin-bottom:20px;"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
+      <tr><td><span class="cm">!notes</span></td><td><span class="cd">Shows subject buttons → select one → PDF DM'd instantly.</span></td><td><span class="wall">Everyone (role-gated)</span></td></tr>
+    </tbody></table></div>
+
+    <!-- Access info -->
+    <div class="note" style="margin-bottom:20px;">🔒 <strong>Role-gated:</strong> Students can only see subjects from their own year (FYBCA/SYBCA/TYBCA). Join the Discord server → select your year role → use !notes in your division channel.</div>
+
+    <!-- Tech Stack -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">🛠️ Tech Stack</div>
+    <div class="g2" style="margin-bottom:14px;">
+      <div class="card"><div class="ct">🐍 Python</div><p>Core language — handles all command logic and role checks.</p></div>
+      <div class="card"><div class="ct">📦 discord.py</div><p>Official Discord library — listens to commands, sends DMs.</p></div>
+      <div class="card"><div class="ct">☁️ Google Drive</div><p>Stores all PDFs organized by year and subject folder structure.</p></div>
+      <div class="card"><div class="ct">🚂 Railway.app</div><p>Cloud hosting — bot runs 24/7 even when PC is off.</p></div>
+    </div>
+    <div style="margin-bottom:20px;"><span class="tag">Python 3.10+</span><span class="tag">discord.py</span><span class="tag">Google Drive API</span><span class="tag g">Railway.app</span><span class="tag g">GitHub</span></div>
+
+    <!-- How to access -->
+    <div class="sbox">
+      <p>💡 <strong>To access Notes Bot:</strong><br/><br/>
+      1️⃣ Join the KSV Discord server via the invite link<br/>
+      2️⃣ Go to the role selection channel → pick your year (FYBCA / SYBCA / TYBCA)<br/>
+      3️⃣ Head to your division channel (e.g. SYBCA-C)<br/>
+      4️⃣ Type <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">!notes</span> → subject buttons will appear<br/>
+      5️⃣ Click your subject → PDF link arrives in DMs instantly 📬</p>
+    </div>
+  </div>
+
+
+
+  <!-- ROADMAP -->
+  <div class="sec" id="sec-roadmap">
+    <div class="ph">
+      <div class="ph-pre">Future Plans</div><h2><span class="hl">Roadmap</span></h2><p>What's coming next in the NPCCSM Bot Ecosystem.</p></div>
+    <div class="note">🎯 Goal: Complete College Discord Ecosystem — made by a student, for students, because the college doesn't care.</div>
+    <div class="botcard"><div class="bchdr" onclick="tb('r1')"><div class="bico">📊</div><div class="binfo"><div class="bname">Result Bot</div><div class="btag">Enter Exam No → Get marks instantly</div></div><div><span class="s-test">TESTING</span></div></div><div class="bbody" id="r1"><p class="bdesc">CR/LR links sheet per channel. Students enter Exam No via modal → ephemeral marks. Supports Internal 1–5 and External tabs.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('r2')"><div class="bico">🪪</div><div class="binfo"><div class="bname">Exam No Bot</div><div class="btag">Enrollment No → Exam No + Subject codes</div></div><div><span class="s-next">UP NEXT</span></div></div><div class="bbody" id="r2"><p class="bdesc">Built because college gave zero notification and clerk refused hall ticket without exam number.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('r3')"><div class="bico">📅</div><div class="binfo"><div class="bname">Exam Timetable Bot</div><div class="btag">Query exam schedule anytime</div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="r3"><p class="bdesc">No more screenshot hunting in WhatsApp groups. Search schedule directly in Discord.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('r4')"><div class="bico">🔔</div><div class="binfo"><div class="bname">Reminder Bot</div><div class="btag">Never miss a deadline again</div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="r4"><p class="bdesc">Assignments, submissions, exam dates — custom reminders inside Discord.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('r6')"><div class="bico">📚</div><div class="binfo"><div class="bname">Notes Bot</div><div class="btag">!notes → year → subject → PDF in DM</div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="r6"><p class="bdesc">Role-gated PDF notes delivery. Join Discord → get year role → use !notes → PDF arrives in DM instantly. Powered by Google Drive.</p></div></div>
+      
+  </div>
+
+  <!-- PRESENTATION -->
+  <div class="sec" id="sec-pres">
+    <div class="ph">
+      <div class="ph-pre">Bot Presentation · NPCCSM · 2026</div><h2><span class="hl">Attendance Bot</span> Presentation</h2><p>Interactive presentation — click a topic to explore.</p></div>
+    <div class="pnav">
+      <button class="pnb on" onclick="ps('pp01',this)"><span class="pn">01</span>The Problem</button>
+      <button class="pnb" onclick="ps('pp02',this)"><span class="pn">02</span>What is a Bot?</button>
+      <button class="pnb" onclick="ps('pp03',this)"><span class="pn">03</span>The Solution</button>
+      <button class="pnb" onclick="ps('pp04',this)"><span class="pn">04</span>Tech Stack</button>
+      <button class="pnb" onclick="ps('pp05',this)"><span class="pn">05</span>Sheet Format</button>
+      <button class="pnb" onclick="ps('pp06',this)"><span class="pn">06</span>Commands</button>
+      <button class="pnb" onclick="ps('pp07',this)"><span class="pn">07</span>How to Install</button>
+      <button class="pnb" onclick="ps('pp08',this)"><span class="pn">08</span>How it Works</button>
+      <button class="pnb" onclick="ps('pp09',this)"><span class="pn">09</span>Future Plans</button>
+    </div>
+    <div class="pslide on" id="pp01"><div class="pslabel">01 · The Problem</div><h3>Why was this needed?</h3><div class="pmain"><p>📋 CR/LR students had to manually manage attendance in paper registers or Excel sheets — tracking 60+ students across multiple lectures every day. Finding who's below 75%, sharing reports, or fixing a mistake was a nightmare.</p></div><div class="g2"><div class="pc"><div class="ct">❌ Manual entry errors</div><p>Wrong date, wrong student, wrong count. One mistake and the whole row is off.</p></div><div class="pc"><div class="ct">❌ No quick access</div><p>Students couldn't check their attendance. Had to ask CR every time.</p></div><div class="pc"><div class="ct">❌ No alerts</div><p>Nobody knew they were below 75% until it was too late.</p></div><div class="pc"><div class="ct">❌ Sharing problem</div><p>Sending Excel sheets on WhatsApp for one number — inefficient.</p></div></div></div>
+    <div class="pslide" id="pp02"><div class="pslabel">02 · Basics</div><h3>What is a Discord Bot?</h3><div class="card"><div class="ct">🤖 Bot = Automated program inside Discord</div><p>A Discord Bot is like a virtual assistant that listens for commands (starting with <span style="color:var(--g);font-family:'JetBrains Mono',monospace">!</span>) and does tasks automatically — recording attendance, generating reports, checking student status.</p></div><div class="card"><div class="ct">🔗 Connected to Google Sheets</div><p>Uses Google Sheets as its database. Every command reads or writes data to the spreadsheet in real-time via <span style="color:var(--g);font-family:'JetBrains Mono',monospace">gspread</span>. No separate database needed.</p></div><div class="pstats"><div class="stat"><div class="stat-n">60+</div><div class="stat-l">Students</div></div><div class="stat"><div class="stat-n">11</div><div class="stat-l">Commands</div></div><div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Online</div></div><div class="stat"><div class="stat-n">0</div><div class="stat-l">Manual work</div></div></div></div>
+    <div class="pslide" id="pp03"><div class="pslabel">03 · The Solution</div><h3>What does Attendance Bot do?</h3><div class="sbox"><p>✅ CR/LR can set dates, upload student lists, mark lectures, mark holidays, generate reports — all via Discord commands.<br/><br/>✅ Any student types <strong>!report &lt;roll_no&gt;</strong> → attendance report comes to their DMs.<br/><br/>✅ CR/LR gets defaulters list (below 70%) instantly with one command.</p></div><div class="note">🔒 Only CR/LR can write data. CR/LR + Faculty get reports in channel. Students get their report privately in DMs.</div></div>
+    <div class="pslide" id="pp04"><div class="pslabel">04 · Tech Stack</div><h3>Technologies Used</h3><div class="g2"><div class="card"><div class="ct">🐍 Python</div><p>Core language — handles all logic and Google Sheets communication.</p></div><div class="card"><div class="ct">📦 discord.py</div><p>Official Discord library — connects bot and listens to commands.</p></div><div class="card"><div class="ct">📊 gspread</div><p>Google Sheets API wrapper — real-time read/write.</p></div><div class="card"><div class="ct">🔑 Service Account</div><p>Google API key — secure spreadsheet access.</p></div><div class="card"><div class="ct">🚂 Railway.app</div><p>Cloud hosting — bot runs 24/7 even when PC is off.</p></div><div class="card"><div class="ct">🐙 GitHub</div><p>Code storage — Railway auto-deploys on updates.</p></div></div><div style="margin-top:10px;"><span class="tag">Python 3.10+</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway.app</span><span class="tag g">GitHub</span><span class="tag o">Google Sheets API</span></div></div>
+    <div class="pslide" id="pp05"><div class="pslabel">05 · Database</div><h3>Google Sheet Format</h3><div class="card"><div class="ct">📁 Sheet tabs = Months</div><p>Each month gets its own tab — <span style="color:var(--g);font-family:'JetBrains Mono',monospace">Mar-26</span>, <span style="color:var(--g);font-family:'JetBrains Mono',monospace">Apr-26</span>, etc. You set up manually, bot fills data.</p></div><div class="shwrap"><table class="shtbl"><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr></thead><tbody><tr><td>Sr.No</td><td>Ro.No</td><td>ID No</td><td class="nc">Name</td><td colspan="4" style="color:var(--o);font-size:.65rem;">Dates →</td></tr><tr class="dr"><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>2</td><td>3</td><td>7</td></tr><tr class="lr"><td>—</td><td>—</td><td>—</td><td>—</td><td>Mon(3)</td><td>Tue(2)</td><td>Wed(4)</td><td>Mon(3)</td></tr><tr><td>1</td><td>01</td><td>NPC001</td><td class="nc">Vraj</td><td class="nv">3</td><td class="nv">2</td><td class="zv">0</td><td class="nv">3</td></tr><tr><td>2</td><td>02</td><td>NPC002</td><td class="nc">Yatra</td><td class="nv">3</td><td class="zv">0</td><td class="zv">0</td><td class="nv">3</td></tr><tr><td>3</td><td>03</td><td>NPC003</td><td class="nc">Kalp</td><td class="zv">0</td><td class="nv">2</td><td class="nv">4</td><td class="nv">3</td></tr></tbody></table></div><div class="note">📌 <strong>Row 1</strong> Headers (manual) | <strong>Row 2</strong> Date numbers (bot) | <strong>Row 3</strong> Day+Lectures (bot) | <strong>Row 4+</strong> Attendance numbers (bot)</div></div>
+    <div class="pslide" id="pp06"><div class="pslabel">06 · Commands</div><h3>All Commands</h3><div class="cmdbox"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody><tr><td><span class="cm">!help</span></td><td><span class="cd">Shows all commands.</span></td><td><span class="wall">Everyone</span></td></tr><tr><td><span class="cm">!upload</span><span class="cx">!upload &lt;id&gt;</span></td><td><span class="cd">Connect Google Sheet.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!date</span><span class="cx">!date 09-04-2026</span></td><td><span class="cd">Set attendance date.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!lecture</span><span class="cx">!lecture 3</span></td><td><span class="cd">Set total lectures today.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!set</span><span class="cx">!set 05 3</span></td><td><span class="cd">Mark attended lectures by Roll No.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!holiday</span><span class="cx">!holiday 14-04-2026</span></td><td><span class="cd">Mark a holiday.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!reset</span><span class="cx">!reset date roll att</span></td><td><span class="cd">Fix wrong entry.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!report</span><span class="cx">!report 05</span></td><td><span class="cd">Attendance % — CR/LR/Faculty → channel | Students → DM 📬</span></td><td><span class="wall">Everyone</span></td></tr><tr><td><span class="cm">!low</span></td><td><span class="cd">Students below 70%.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr><tr><td><span class="cm">!high</span></td><td><span class="cd">Students at 95%+.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr><tr><td><span class="cm">!check</span><span class="cx">!check 09-04-2026</span></td><td><span class="cd">Who attended on a date.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr></tbody></table></div></div>
+    <div class="pslide" id="pp07"><div class="pslabel">07 · Setup</div><h3>How to Install & Run</h3><div class="card"><div class="ct">Step 1 — Prerequisites</div><p>Python 3.10+, Discord account, Google account, GitHub account.</p></div><div class="terminal"><div class="t-bar"><div class="td1"></div><div class="td2"></div><div class="td3"></div><span class="t-lbl">terminal</span></div><div class="t-body"><span class="tc"># Clone the repo</span><br/><span class="pr">git clone https://github.com/vadaliavraj0214-creator/Attendance-Bot</span><br/><span class="pr">cd Attendance-Bot</span><br/><span class="pr">pip install discord.py gspread google-auth oauth2client</span></div></div><div class="card"><div class="ct">Step 2 — Discord Bot Token</div><p>discord.com/developers → New App → Bot → Reset Token → Copy.</p></div><div class="card"><div class="ct">Step 3 — Google Service Account</div><p>console.cloud.google.com → Enable Sheets API → Service Account → Download JSON → Share Sheet with service account email.</p></div><div class="card"><div class="ct">Step 4 — Deploy on Railway</div><p>Push to GitHub → railway.app → Deploy from GitHub → Add env variables → Live 24/7.</p></div></div>
+    <div class="pslide" id="pp08"><div class="pslabel">08 · Workflow</div><h3>Daily Usage Flow</h3><div class="pflow"><div class="pfs"><div class="pfn">01</div>!date<br/>09-04-2026</div><div class="pfs"><div class="pfn">02</div>!lecture 3</div><div class="pfs"><div class="pfn">03</div>!set 05 2</div><div class="pfs"><div class="pfn">04</div>Sheet updated ✅</div></div><div class="pflow"><div class="pfs"><div class="pfn">05</div>!report 05</div><div class="pfs"><div class="pfn">06</div>Bot reads months</div><div class="pfs"><div class="pfn">07</div>Calculates %</div><div class="pfs"><div class="pfn">08</div>DM sent 📬</div></div><div class="sbox" style="margin-top:12px;"><p>💡 !low → defaulters instantly. No Excel, no manual counting. Zero effort.</p></div></div>
+    <div class="pslide" id="pp09"><div class="pslabel">09 · Roadmap</div><h3>What's coming next?</h3><div class="g2"><div class="card"><div class="ct">📊 Result Bot</div><p>Exam No → marks instantly.</p><div style="margin-top:7px;"><span class="tag o">In Progress</span></div></div><div class="card"><div class="ct">🪪 Exam No Bot</div><p>Enrollment No → Exam No + codes.</p><div style="margin-top:7px;"><span class="tag">Up Next</span></div></div><div class="card"><div class="ct">📅 Timetable Bot</div><p>Query exam schedule.</p><div style="margin-top:7px;"><span class="tag">Planning</span></div></div><div class="card"><div class="ct">🔔 Reminder Bot</div><p>Deadline reminders in Discord.</p><div style="margin-top:7px;"><span class="tag">Planning</span></div></div></div><div class="note">🎯 Complete College Ecosystem — made by a student, for students.</div></div>
+      
+  </div><!-- /sec-pres -->
+
+  <!-- WHY DISCORD -->
+  <div class="sec" id="sec-whydiscord">
+    <div class="ph">
+      <div class="ph-pre">Why Discord? · Not WhatsApp · Not Email</div>
+      <h2>Why <span class="hl">Discord</span>?</h2>
+      <p>WhatsApp groups are chaotic. Emails get ignored. Discord was built for communities — and here's why it works better for a university.</p>
+    </div>
+
+    <!-- Hero comparison banner -->
+    <div style="background:linear-gradient(135deg,rgba(88,101,242,.12),rgba(0,212,255,.08));border:1px solid rgba(88,101,242,.3);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
+      <div style="font-size:2rem;margin-bottom:10px;">⚔️</div>
+      <div style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:6px;">WhatsApp Groups <span style="color:var(--mu);">vs</span> Discord Server</div>
+      <div style="font-size:.88rem;color:var(--mu);max-width:480px;margin:0 auto;line-height:1.7;">One is built for chit-chat between friends. The other is built for organized, scalable communities. Guess which one your university deserves.</div>
+    </div>
+
+    <!-- Key Benefits — Cards -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">✦ Discord Benefits</div>
+    <div class="g2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="ct">📂 Organized Channels</div>
+        <p>Separate channels for separate topics — Announcements, Exam Info, Study Resources, Ask Faculty. No important message gets buried in an endless scroll.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🛡️ Role-Based Access</div>
+        <p>FYBCA students only see their year's channels. Faculty only access the faculty zone. Everything is controlled — no one can see what isn't meant for them.</p>
+      </div>
+      <div class="card">
+        <div class="ct">📌 Pinned Important Info</div>
+        <p>Exam dates, timetables, notices — pin them in the channel and they're always there. No more scrolling through 300 messages to find one announcement.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🤖 Bot Automation</div>
+        <p>Track attendance, check results, get reminders — all automatically via bots. None of this is possible on WhatsApp.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🔇 Notification Control</div>
+        <p>Only get notified for channels that matter to you. Mute the rest. WhatsApp groups send 200 messages and vibrate your phone all day.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🔒 Privacy Protected</div>
+        <p>Your personal number stays hidden. Discord uses usernames — you never have to share your phone number with anyone, ever.</p>
+      </div>
+      <div class="card">
+        <div class="ct">💬 Threads & Replies</div>
+        <p>Open a thread on any message and discuss without disturbing the main chat. On WhatsApp, every conversation gets mixed into one mess.</p>
+      </div>
+      <div class="card">
+        <div class="ct">📁 File Sharing & Search</div>
+        <p>Share PDFs, notes, and resources — and find them later using search. WhatsApp's media gallery is an unsearchable jungle.</p>
+      </div>
+    </div>
+
+    <!-- FULL COMPARISON TABLE -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⚔️ Full Comparison — Discord vs WhatsApp vs Email</div>
+    <div class="shwrap" style="margin-bottom:20px;">
+      <table class="shtbl" style="min-width:600px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:10px 14px;">Feature</th>
+            <th style="color:#5865F2;">Discord 🎮</th>
+            <th style="color:#25D366;">WhatsApp 📱</th>
+            <th style="color:#EA4335;">Email 📧</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="nc" style="font-weight:600;">Organized Channels</td>
+            <td class="nv">✅ Yes</td>
+            <td class="zv">❌ No</td>
+            <td class="zv">❌ No</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Role-Based Access</td>
+            <td class="nv">✅ Full Control</td>
+            <td class="zv">❌ None</td>
+            <td class="zv">❌ None</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Phone Number Hidden</td>
+            <td class="nv">✅ Username Only</td>
+            <td class="zv">❌ Number Exposed</td>
+            <td class="nv">✅ Email Only</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Custom Bots / Automation</td>
+            <td class="nv">✅ Fully Supported</td>
+            <td class="zv">❌ Not Possible</td>
+            <td class="zv">❌ Not Possible</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Notification Control</td>
+            <td class="nv">✅ Per Channel</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Mute All Only</td>
+            <td class="nv">✅ Filters Possible</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Message Search</td>
+            <td class="nv">✅ Powerful Search</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Limited</td>
+            <td class="nv">✅ Yes</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">File Storage & Access</td>
+            <td class="nv">✅ Organized</td>
+            <td class="zv">❌ Scattered Gallery</td>
+            <td class="nv">✅ Attachments</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Voice / Video Channels</td>
+            <td class="nv">✅ Always Open VC</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Call Only</td>
+            <td class="zv">❌ No</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Message Threading</td>
+            <td class="nv">✅ Built-in Threads</td>
+            <td class="zv">❌ No</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Reply Chains</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Pinned Announcements</td>
+            <td class="nv">✅ Per Channel</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Limited</td>
+            <td class="zv">❌ No</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Multiple Departments</td>
+            <td class="nv">✅ One Server</td>
+            <td class="zv">❌ Separate Groups</td>
+            <td class="zv">❌ Separate Threads</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Read-Only Announcements</td>
+            <td class="nv">✅ Yes</td>
+            <td class="zv">❌ Anyone Can Reply</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Reply-All Chaos</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Free to Use</td>
+            <td class="nv">✅ Completely Free</td>
+            <td class="nv">✅ Free</td>
+            <td class="nv">✅ Free</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Desktop App</td>
+            <td class="nv">✅ Full App</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Web Only</td>
+            <td class="nv">✅ Full App</td>
+          </tr>
+          <tr>
+            <td class="nc" style="font-weight:600;">Scales to 1000+ members</td>
+            <td class="nv">✅ Built for Scale</td>
+            <td class="zv">❌ Group Limit 1024</td>
+            <td style="color:var(--o);font-weight:600;">⚠️ Mailing List</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Real problems Discord solves -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">🎯 Real Problems Discord Solves at NPCCSM</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:20px;">
+      <div class="rule">
+        <div class="rule-n" style="color:var(--r);border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.08);">❌</div>
+        <div>
+          <div class="rule-t">"An important notice got buried in WhatsApp"</div>
+          <div class="rule-d">Discord has a dedicated Announcement channel — read-only, pinned, always visible. No "ok sir 🙏" spam flooding over it.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-n" style="color:var(--r);border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.08);">❌</div>
+        <div>
+          <div class="rule-t">"Nobody knew their Exam Number"</div>
+          <div class="rule-d">Just enter your Enrollment Number in the Discord bot → get your Exam Number instantly. No need to visit the clerk's office.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-n" style="color:var(--r);border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.08);">❌</div>
+        <div>
+          <div class="rule-t">"What's my attendance? I have to keep asking CR"</div>
+          <div class="rule-d">Type !report with your roll number — the bot sends a full breakdown to your DMs instantly. No one gets disturbed.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-n" style="color:var(--r);border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.08);">❌</div>
+        <div>
+          <div class="rule-t">"A FYBCA message landed in the TYBCA group"</div>
+          <div class="rule-d">Discord has role-based access — FYBCA students only see their own channels. Zero cross-department confusion.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-n" style="color:var(--r);border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.08);">❌</div>
+        <div>
+          <div class="rule-t">"I didn't want to share my personal number with everyone"</div>
+          <div class="rule-d">Discord only uses usernames. Your phone number is never visible to anyone. Privacy is 100% protected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div style="background:linear-gradient(135deg,rgba(88,101,242,.1),rgba(0,212,255,.07));border:1px solid rgba(88,101,242,.25);border-radius:12px;padding:24px;text-align:center;">
+      <div style="font-size:1.5rem;margin-bottom:10px;">🚀</div>
+      <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;">Makes sense now? Come join us.</div>
+      <div style="font-size:.85rem;color:var(--mu);margin-bottom:16px;line-height:1.7;">KSV University Discord Server — organized, bot-powered, and actually useful.</div>
+      <a href="https://discord.gg/srTDAf2Qzh" target="_blank" style="background:linear-gradient(90deg,#5865F2,var(--ac));color:#fff;font-weight:700;font-size:.85rem;padding:12px 28px;border-radius:var(--rr);text-decoration:none;letter-spacing:.5px;font-family:'JetBrains Mono',monospace;">🎮 JOIN SERVER →</a>
+    </div>
+
+    
+  </div>
+  <!-- /WHY DISCORD -->
+
+  <!-- HELP & FEEDBACK -->
+  <div class="sec" id="sec-feedback">
+    <div class="ph">
+      <div class="ph-pre">Support · Help & Feedback</div>
+      <h2><span class="hl">Help &amp;</span> Feedback</h2>
+      <p>Have a question, suggestion, or found a bug? Reach out directly — your feedback helps improve the ecosystem for everyone at NPCCSM.</p>
+    </div>
+
+    <div class="card" id="fb-form-wrap" style="max-width:560px;margin:0 auto;">
+      <div class="ct">📬 Send a Message</div>
+      <p style="font-size:.85rem;color:var(--mu);margin-bottom:18px;">Fill in the form below. Your email will be verified before sending.</p>
+
+      <!-- STEP 1: Main Form -->
+      <div id="fb-step1">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-size:.8rem;color:var(--mu);letter-spacing:.5px;"><span style="color:var(--ac);font-family:'JetBrains Mono',monospace;margin-right:6px;">01</span>YOUR NAME</label>
+            <input type="text" id="fb-name" placeholder="e.g. Vaidehi Patel"
+              style="background:var(--b1);border:1px solid var(--b2);color:var(--tx);padding:10px 14px;border-radius:var(--rr);font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border .2s;"
+              onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--b2)'"/>
+            <span id="err-name" style="font-size:.75rem;color:var(--r);display:none;">⚠ Name must contain only letters and spaces.</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-size:.8rem;color:var(--mu);letter-spacing:.5px;"><span style="color:var(--ac);font-family:'JetBrains Mono',monospace;margin-right:6px;">02</span>GMAIL ADDRESS</label>
+            <input type="email" id="fb-email" placeholder="e.g. youremail@gmail.com"
+              style="background:var(--b1);border:1px solid var(--b2);color:var(--tx);padding:10px 14px;border-radius:var(--rr);font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border .2s;"
+              onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--b2)'"/>
+            <span id="err-email" style="font-size:.75rem;color:var(--r);display:none;">⚠ Please enter a valid Gmail address (must end with @gmail.com).</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-size:.8rem;color:var(--mu);letter-spacing:.5px;"><span style="color:var(--ac);font-family:'JetBrains Mono',monospace;margin-right:6px;">03</span>CONTACT NUMBER</label>
+            <input type="text" id="fb-phone" placeholder="e.g. 0123456789" maxlength="10"
+              style="background:var(--b1);border:1px solid var(--b2);color:var(--tx);padding:10px 14px;border-radius:var(--rr);font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border .2s;"
+              onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--b2)'"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+            <span id="err-phone" style="font-size:.75rem;color:var(--r);display:none;">⚠ Contact number must be exactly 10 digits.</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-size:.8rem;color:var(--mu);letter-spacing:.5px;"><span style="color:var(--ac);font-family:'JetBrains Mono',monospace;margin-right:6px;">04</span>YOUR MESSAGE / FEEDBACK</label>
+            <textarea id="fb-message" rows="5" placeholder="Write your feedback, question, or suggestion here..."
+              style="background:var(--b1);border:1px solid var(--b2);color:var(--tx);padding:10px 14px;border-radius:var(--rr);font-family:'Inter',sans-serif;font-size:1rem;outline:none;resize:vertical;transition:border .2s;"
+              onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--b2)'"></textarea>
+            <span id="err-msg" style="font-size:.75rem;color:var(--r);display:none;">⚠ Please enter your message.</span>
+          </div>
+
+          <button onclick="fbSendOtp()"
+            style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.9rem;padding:12px 24px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:.5px;transition:opacity .2s;">
+            VERIFY EMAIL &amp; CONTINUE →
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: OTP Verification -->
+      <div id="fb-step2" style="display:none;">
+        <button onclick="fbBackToForm()"
+          style="display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--mu);font-size:.82rem;padding:0 0 14px 0;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:color .2s;"
+          onmouseover="this.style.color='var(--ac)'" onmouseout="this.style.color='var(--mu)'">
+          ← Back to Form
+        </button>
+        <div style="text-align:center;margin-bottom:20px;">
+          <div style="font-size:2rem;margin-bottom:8px;">📧</div>
+          <div style="font-weight:600;font-size:1rem;color:var(--tx);margin-bottom:6px;">Check Your Email</div>
+          <div style="font-size:.85rem;color:var(--mu);">A 6-digit OTP has been sent to <span id="otp-email-display" style="color:var(--ac);"></span></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <input type="text" id="fb-otp" placeholder="Enter 6-digit OTP" maxlength="6"
+            style="background:var(--b1);border:1px solid var(--b2);color:var(--tx);padding:12px 14px;border-radius:var(--rr);font-family:'JetBrains Mono',monospace;font-size:1.2rem;outline:none;text-align:center;letter-spacing:8px;transition:border .2s;"
+            onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--b2)'"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+          <span id="err-otp" style="font-size:.75rem;color:var(--r);display:none;text-align:center;">⚠ Incorrect OTP. Please try again.</span>
+
+          <button onclick="fbVerifyOtp()" id="fb-verify-btn"
+            style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.9rem;padding:12px 24px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:.5px;">
+            VERIFY &amp; SEND FEEDBACK →
+          </button>
+          <div style="text-align:center;font-size:.8rem;color:var(--mu);">Didn't get OTP? Check spam folder. <span onclick="fbResendOtp()" style="color:var(--ac);cursor:pointer;text-decoration:underline;" id="resend-link">Resend</span></div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div id="fb-success" style="display:none;text-align:center;padding:28px 0;">
+        <div style="font-size:2.5rem;margin-bottom:12px;">✅</div>
+        <div style="color:var(--g);font-weight:700;font-size:1.1rem;margin-bottom:6px;">Feedback Sent!</div>
+        <div style="color:var(--mu);font-size:.88rem;">Thank you! The developer will get back to you soon.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;max-width:560px;margin-left:auto;margin-right:auto;">
+      <div class="card" style="text-align:center;">
+        <div class="ct">💬 Discord</div>
+        <p style="font-size:.85rem;color:var(--mu);margin-bottom:10px;">Join the server directly for quick help</p>
+        <a href="https://discord.gg/srTDAf2Qzh" target="_blank" style="color:var(--ac);font-size:.85rem;font-family:'JetBrains Mono',monospace;">discord.gg/srTDAf2Qzh</a>
+      </div>
+    </div>
+  </div>
+  <!-- /HELP & FEEDBACK -->
+
+
+  <!-- FAQ -->
+  <div class="sec" id="sec-faq">
+      <div class="ph">
+        <div class="ph-pre">Support · Frequently Asked Questions</div>
+        <h2><span class="hl">Help</span> / FAQ</h2>
+        <p>Common questions about the Discord server, bots, and website — answered.</p>
+      </div>
+      <div class="faq-stats" id="faq-stats"></div>
+      <div class="faq-search-wrap">
+        <span class="faq-search-icon">🔍</span>
+        <input type="text" id="faq-search" placeholder="Search questions..." oninput="faqFilter(this.value)"/>
+      </div>
+      <div id="faq-list"></div>
+  </div>
+  <!-- /FAQ -->
+
+  <!-- OUR SERVICES -->
+  <div class="sec" id="sec-services">
+    <div class="ph">
+      <div class="ph-pre">Services · Custom Discord Setup</div>
+      <h2><span class="hl">Our</span> Services</h2>
+      <p>We build professional Discord servers tailored for colleges, communities, and organizations — just like KSV University.</p>
+    </div>
+
+    <!-- Hero offer card -->
+    <div style="background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(0,255,136,.06));border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:28px;text-align:center;margin-bottom:24px;">
+      <div style="font-size:2rem;margin-bottom:12px;">🎮</div>
+      <div style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:8px;">Want a Discord Server like KSV University?</div>
+      <div style="font-size:.95rem;color:var(--mu);line-height:1.8;max-width:480px;margin:0 auto;">We design and deploy complete Discord servers — custom roles, structured channels, moderation bots, and full setup. Built for colleges, clubs, and communities.</div>
+      <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/message/JGDIBS2LRA3KP1" target="_blank" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.85rem;padding:12px 24px;border-radius:var(--rr);text-decoration:none;letter-spacing:.5px;font-family:'JetBrains Mono',monospace;">💬 CONTACT US →</a>
+      </div>
+    </div>
+
+    <!-- What we offer -->
+    <div style="margin-bottom:8px;font-size:.72rem;color:var(--mu);letter-spacing:2px;font-family:'JetBrains Mono',monospace;">WHAT YOU GET</div>
+    <div class="g2">
+      <div class="card">
+        <div class="ct">🏗️ Server Architecture</div>
+        <p>Complete channel structure — categories, announcement channels, department zones, staff areas — all organized and clean.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🛡️ Role System</div>
+        <p>Custom role hierarchy with proper permissions — admin, staff, department, year, division roles — all configured.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🤖 Bot Integration</div>
+        <p>Moderation bots, utility bots, and custom bots tailored to your community's needs — deployed and running 24/7.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🔒 Security Setup</div>
+        <p>2FA enforcement, verification system, anti-spam, and permission hardening to keep your server safe.</p>
+      </div>
+      <div class="card">
+        <div class="ct">📋 Custom Bots</div>
+        <p>Need an attendance bot, result checker, or reminder system? We build and deploy custom bots for your specific requirements.</p>
+      </div>
+      <div class="card">
+        <div class="ct">📞 Full Support</div>
+        <p>We don't just build and leave — we stay and help until everything is running perfectly for your community.</p>
+      </div>
+    </div>
+
+    <!-- CTA bottom -->
+    <div style="text-align:center;margin-top:28px;padding:24px;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.1);border-radius:12px;">
+      <div style="font-size:1rem;font-weight:600;color:var(--tx);margin-bottom:6px;">Ready to get started?</div>
+      <div style="font-size:.85rem;color:var(--mu);margin-bottom:16px;">Reach out via WhatsApp, Instagram, or Email — we'll get back to you quickly.</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/message/JGDIBS2LRA3KP1" target="_blank" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);color:#25D366;font-size:.82rem;padding:10px 20px;border-radius:var(--rr);text-decoration:none;font-family:'JetBrains Mono',monospace;">WhatsApp</a>
+        <a href="https://www.instagram.com/niora_digital?igsh=MTVnb2xqazh6ZTkzMA==" target="_blank" style="background:rgba(193,53,132,.1);border:1px solid rgba(193,53,132,.25);color:#C13584;font-size:.82rem;padding:10px 20px;border-radius:var(--rr);text-decoration:none;font-family:'JetBrains Mono',monospace;">Instagram</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=nioradigital@gmail.com" target="_blank" style="background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.25);color:#EA4335;font-size:.82rem;padding:10px 20px;border-radius:var(--rr);text-decoration:none;font-family:'JetBrains Mono',monospace;">Gmail</a>
+      </div>
+    </div>
+
+    
+  </div>
+  <!-- /OUR SERVICES -->
+  <!-- ABOUT DEVELOPER & AGENCY -->
+  <div class="sec" id="sec-contact">
+    <div class="ph">
+      <div class="ph-pre">Behind the Project · People who built this</div>
+      <h2>About the <span class="hl">Developer &amp; Agency</span></h2>
+      <p>The people who designed, built, and maintain the KSV University Discord Ecosystem.</p>
+    </div>
+
+    <!-- Two cards grid -->
+    <div class="g2" style="margin-bottom:24px;">
+
+      <!-- RenGoku Card -->
+      <div class="card" style="border-radius:12px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),transparent);"></div>
+        <div style="width:46px;height:46px;border-radius:10px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;">👨‍💻</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-bottom:4px;">Lead Developer</div>
+        <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:2px;">RenGoku</div>
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:10px;">Vadalia Vraj Kaushikbhai</div>
+        <div style="font-size:.8rem;color:var(--mu);line-height:1.7;margin-bottom:12px;">NPCCSM student · Built the entire Discord bot suite, website architecture, and the KSV University ecosystem from scratch.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+          <span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">JavaScript</span><span class="tag g">Open Source</span>
+        </div>
+        <!-- Social buttons -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <a href="https://wa.me/message/5GQOQZXFOMVNP1" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.25);color:#25d366;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(37,211,102,.15)'" onmouseout="this.style.background='rgba(37,211,102,.06)'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/vraj_0214?utm_source=qr&igsh=MTdzMnJwZXJ0ejJ3Ng==" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(228,64,95,.06);border:1px solid rgba(228,64,95,.25);color:#e4405f;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(228,64,95,.15)'" onmouseout="this.style.background='rgba(228,64,95,.06)'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            @vraj_0214
+          </a>
+          <a href="mailto:vadaliavraj0214@gmail.com" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);color:#7ab8cc;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(0,212,255,.15)';this.style.color='var(--ac)'" onmouseout="this.style.background='rgba(0,212,255,.07)';this.style.color='#7ab8cc'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+      <!-- Niora Card -->
+      <div class="card" style="border-radius:12px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),transparent);"></div>
+        <div style="width:46px;height:46px;border-radius:10px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;">🏢</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--g);text-transform:uppercase;margin-bottom:4px;">Design &amp; Development Agency</div>
+        <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:2px;">Niora Digital Solutions</div>
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:10px;">nioradigital@gmail.com</div>
+        <div style="font-size:.8rem;color:var(--mu);line-height:1.7;margin-bottom:12px;">Responsible for UI/UX design, website architecture, and all digital assets for the KSV University Discord ecosystem.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+          <span class="tag">UI/UX Design</span><span class="tag">Web Dev</span><span class="tag g">KSV Partner</span>
+        </div>
+        <!-- Social buttons -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <a href="https://wa.me/message/JGDIBS2LRA3KP1" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.25);color:#25d366;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(37,211,102,.15)'" onmouseout="this.style.background='rgba(37,211,102,.06)'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/niora_digital?utm_source=qr&igsh=MTVnb2xqazh6ZTkzMA==" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(228,64,95,.06);border:1px solid rgba(228,64,95,.25);color:#e4405f;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(228,64,95,.15)'" onmouseout="this.style.background='rgba(228,64,95,.06)'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            @niora_digital
+          </a>
+          <a href="mailto:nioradigital@gmail.com" style="display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:5px 10px;border-radius:6px;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);color:#7ab8cc;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(0,212,255,.15)';this.style.color='var(--ac)'" onmouseout="this.style.background='rgba(0,212,255,.07)';this.style.color='#7ab8cc'">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom credit bar -->
+    <div style="text-align:center;padding:18px;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.08);border-radius:12px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--di);letter-spacing:1.5px;">BUILT WITH ❤ FOR NPCCSM · KSV UNIVERSITY – KADI</div>
+    </div>
+
+    
+  </div>
+  <!-- /ABOUT DEVELOPER & AGENCY -->
+
+  </div><!-- /inner -->
+  </div><!-- /content-wrap -->
+
+  <!-- ══════════════ GLOBAL FOOTER ══════════════ -->
+  <footer id="global-footer">
+    <div class="gf-wrap">
+      <div class="gf-top">
+        <div class="gf-brand">
+          <div class="gf-logo">
+            <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="10" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/><polygon points="32,10 54,20 32,30 10,20" fill="#00d4ff"/><rect x="18" y="28" width="28" height="10" rx="2" fill="#0f2535"/><ellipse cx="32" cy="38" rx="14" ry="3" fill="#020408"/><text x="32" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="#00d4ff" font-family="monospace">KSV</text></svg>
+            <div>
+              <div class="gf-logo-name">KSV University</div>
+              <div class="gf-logo-sub">Discord Ecosystem</div>
+            </div>
+          </div>
+          <p class="gf-tagline">A centralized communication platform for students, faculty &amp; staff — powered by custom Discord bots built at NPCCSM.</p>
+          <div class="gf-socials">
+            <a href="https://wa.me/message/5GQOQZXFOMVNP1" target="_blank" class="gf-soc gf-soc-wa" title="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+            <a href="https://www.instagram.com/vraj_0214" target="_blank" class="gf-soc gf-soc-ig" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            <a href="mailto:vadaliavraj0214@gmail.com" class="gf-soc gf-soc-em" title="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></a>
+          </div>
+        </div>
+        <div class="gf-cols">
+          <div class="gf-col">
+            <div class="gf-col-title">Server Docs</div>
+            <a class="gf-lnk" onclick="nav('overview',null)">📌 Overview</a>
+            <a class="gf-lnk" onclick="nav('rules',null)">📋 Rules</a>
+            <a class="gf-lnk" onclick="nav('roles',null)">🎭 Roles</a>
+            <a class="gf-lnk" onclick="nav('channels',null)">💬 Channels</a>
+            <a class="gf-lnk" onclick="nav('security',null)">🔒 Security</a>
+          </div>
+          <div class="gf-col">
+            <div class="gf-col-title">Bot Ecosystem</div>
+            <a class="gf-lnk" onclick="nav('bots',null)">🚀 All Bots</a>
+            <a class="gf-lnk" onclick="nav('attendance',null)">📋 Attendance Bot</a>
+            <a class="gf-lnk" onclick="nav('notes',null)">📚 Notes Bot</a>
+            <a class="gf-lnk" onclick="nav('result',null)">📊 Result Bot</a>
+            <a class="gf-lnk" onclick="nav('roadmap',null)">🗺 Roadmap</a>
+          </div>
+          <div class="gf-col">
+            <div class="gf-col-title">More</div>
+            <a class="gf-lnk" onclick="nav('whydiscord',null)">💡 Why Discord?</a>
+            <a class="gf-lnk" onclick="nav('faq',null)">❓ Help / FAQ</a>
+            <a class="gf-lnk" onclick="nav('feedback',null)">📩 Feedback</a>
+            <a class="gf-lnk" onclick="nav('services',null)">⚡ Our Services</a>
+            <a class="gf-lnk" onclick="nav('contact',null)">👨‍💻 About Developer</a>
+            <a class="gf-lnk" href="https://discord.gg/srTDAf2Qzh" target="_blank">🎮 Join Discord</a>
+          </div>
+        </div>
+      </div>
+      <div class="gf-divider"></div>
+      <div class="gf-bottom">
+        <div class="gf-copy">© 2026 Niora Digital Solutions · All rights reserved</div>
+        <div class="gf-built"><span class="gf-built-label">Built for</span> <span class="gf-built-val">NPCCSM · KSV University – Kadi</span></div>
+        <div class="gf-agency">Designed &amp; Developed by <a href="mailto:nioradigital@gmail.com" class="gf-agency-link">Niora Digital Solutions</a></div>
+      </div>
+    </div>
+  </footer>
+  <!-- ══════════════ /GLOBAL FOOTER ══════════════ -->
+
+</div><!-- /app -->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('RPOBvrq06bBr24X58');</script>
+<script>
+function enterApp(){
+  const hero=document.getElementById('hero');
+  const app=document.getElementById('app');
+  hero.classList.add('hide');
+  setTimeout(()=>{
+    hero.style.display='none';
+    app.style.display='flex';
+    app.style.flexDirection='column';
+    setTimeout(()=>app.classList.add('visible'),20);
+  },500);
+}
+
+function goHome(){
+  const hero=document.getElementById('hero');
+  const app=document.getElementById('app');
+  app.classList.remove('visible');
+  setTimeout(()=>{
+    app.style.display='none';
+    hero.style.display='flex';
+    hero.classList.remove('hide');
+  },400);
+}
+
+// ── SECTION NAMES ──────────────────────────────────────
+const SEC_NAMES = {
+  overview:'Overview', rules:'Rules', roles:'Roles', channels:'Channels',
+  security:'Security', workflow:'Workflow', serverbots:'Server Bots',
+  whydiscord:'Why Discord?', bots:'Bot Ecosystem', attendance:'Attendance Bot',
+  result:'Result Bot', notes:'Notes Bot', roadmap:'Roadmap', feedback:'Help & Feedback',
+  contact:'About Developer & Agency', services:'Our Services', faq:'Help / FAQ',
+  pres:'Attendance Bot — Presentation'
+};
+
+// ── NAV HISTORY ─────────────────────────────────────────
+let navHistory = [];
+let currentSection = 'overview';
+
+function nav(id, el, fromPopState){
+  if(id !== currentSection){
+    navHistory.push(currentSection);
+  }
+  currentSection = id;
+
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.sb-lnk').forEach(l=>l.classList.remove('on'));
+  document.getElementById('sec-'+id).classList.add('on');
+  if(el) el.classList.add('on');
+
+  // Sidebar active highlight
+  document.querySelectorAll('.sb-lnk').forEach(l=>{
+    if(l.getAttribute('onclick') && l.getAttribute('onclick').includes("'"+id+"'"))
+      l.classList.add('on');
+  });
+
+  closeSB();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  const nameEl = document.getElementById('tb-section-name');
+  if(nameEl) nameEl.textContent = SEC_NAMES[id] || 'KSV · Discord Ecosystem';
+
+  // Browser history update (sirf tab jab browser back/forward se nahi aaya)
+  if(!fromPopState){
+    history.pushState({section: id}, '', '#'+id);
+  }
+}
+
+// Browser back/forward button — popstate event
+window.addEventListener('popstate', function(e){
+  const id = (e.state && e.state.section) ? e.state.section : 'overview';
+  if(navHistory.length > 0) navHistory.pop();
+  currentSection = id;
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.sb-lnk').forEach(l=>l.classList.remove('on'));
+  const sec = document.getElementById('sec-'+id);
+  if(sec) sec.classList.add('on');
+  document.querySelectorAll('.sb-lnk').forEach(l=>{
+    if(l.getAttribute('onclick') && l.getAttribute('onclick').includes("'"+id+"'"))
+      l.classList.add('on');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  const nameEl = document.getElementById('tb-section-name');
+  if(nameEl) nameEl.textContent = SEC_NAMES[id] || 'KSV · Discord Ecosystem';
+});
+
+function navBack(){
+  if(navHistory.length === 0) return;
+  const prevId = navHistory.pop();
+  currentSection = prevId;
+
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.sb-lnk').forEach(l=>l.classList.remove('on'));
+  document.getElementById('sec-'+prevId).classList.add('on');
+
+  // Highlight correct sidebar link
+  document.querySelectorAll('.sb-lnk').forEach(l=>{
+    if(l.getAttribute('onclick') && l.getAttribute('onclick').includes("'"+prevId+"'"))
+      l.classList.add('on');
+  });
+
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  const nameEl = document.getElementById('tb-section-name');
+  if(nameEl) nameEl.textContent = SEC_NAMES[prevId] || 'KSV · Discord Ecosystem';
+
+  const backBtn = document.getElementById('tb-back-btn');
+  if(backBtn) backBtn.style.display = navHistory.length > 0 ? 'inline-flex' : 'none';
+}
+
+function openSB(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSB(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+function tb(id){document.getElementById(id).classList.toggle('open');}
+function ps(id,btn){
+  document.querySelectorAll('.pslide').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.pnb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// scroll to enter
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>80&&document.getElementById('hero').style.display!=='none'){
+    enterApp();
+  }
+},{passive:true,once:true});
+
+// ── FEEDBACK FORM — Validation + OTP + Submit ──────────────
+let fbOtpCode = '';
+let fbOtpEmail = '';
+
+function fbShowErr(id, show){
+  document.getElementById(id).style.display = show ? 'block' : 'none';
+}
+function fbSetBorder(el, color){
+  el.style.borderColor = color;
+}
+
+function fbSendOtp(){
+  const name  = document.getElementById('fb-name').value.trim();
+  const email = document.getElementById('fb-email').value.trim();
+  const phone = document.getElementById('fb-phone').value.trim();
+  const msg   = document.getElementById('fb-message').value.trim();
+
+  let valid = true;
+
+  // Name: only letters + spaces
+  if(!name || !/^[A-Za-z\s]+$/.test(name)){
+    fbShowErr('err-name', true);
+    fbSetBorder(document.getElementById('fb-name'), 'var(--r)');
+    valid = false;
+  } else {
+    fbShowErr('err-name', false);
+    fbSetBorder(document.getElementById('fb-name'), 'var(--b2)');
+  }
+
+  // Email: must be valid and @gmail.com
+  if(!email || !/^[^\s@]+@gmail\.com$/i.test(email)){
+    fbShowErr('err-email', true);
+    fbSetBorder(document.getElementById('fb-email'), 'var(--r)');
+    valid = false;
+  } else {
+    fbShowErr('err-email', false);
+    fbSetBorder(document.getElementById('fb-email'), 'var(--b2)');
+  }
+
+  // Phone: exactly 10 digits
+  if(!phone || !/^\d{10}$/.test(phone)){
+    fbShowErr('err-phone', true);
+    fbSetBorder(document.getElementById('fb-phone'), 'var(--r)');
+    valid = false;
+  } else {
+    fbShowErr('err-phone', false);
+    fbSetBorder(document.getElementById('fb-phone'), 'var(--b2)');
+  }
+
+  // Message: not empty
+  if(!msg){
+    fbShowErr('err-msg', true);
+    fbSetBorder(document.getElementById('fb-message'), 'var(--r)');
+    valid = false;
+  } else {
+    fbShowErr('err-msg', false);
+    fbSetBorder(document.getElementById('fb-message'), 'var(--b2)');
+  }
+
+  if(!valid) return;
+
+  // Generate OTP and send via EmailJS
+  fbOtpCode  = String(Math.floor(100000 + Math.random() * 900000));
+  fbOtpEmail = email;
+
+  // Send OTP email using EmailJS (free service)
+  emailjs.send('service_fu4t1vh', 'template_4dz8q9f', {
+    to_email: email,
+    otp_code: fbOtpCode
+  }).then(() => {
+    document.getElementById('otp-email-display').textContent = email;
+    document.getElementById('fb-step1').style.display = 'none';
+    document.getElementById('fb-step2').style.display = 'block';
+    document.getElementById('fb-otp').value = '';
+    fbShowErr('err-otp', false);
+  }).catch(() => {
+    alert('Could not send OTP. Please check your email and try again.');
+  });
+}
+
+function fbResendOtp(){
+  const name = document.getElementById('fb-name').value.trim();
+  fbOtpCode = String(Math.floor(100000 + Math.random() * 900000));
+  emailjs.send('service_fu4t1vh', 'template_4dz8q9f', {
+    to_email: fbOtpEmail,
+    otp_code: fbOtpCode
+  }).then(()=>{
+    document.getElementById('resend-link').textContent = 'Sent!';
+    setTimeout(()=>{ document.getElementById('resend-link').textContent = 'Resend'; }, 3000);
+  });
+}
+
+function fbBackToForm(){
+  document.getElementById('fb-step2').style.display = 'none';
+  document.getElementById('fb-step1').style.display = 'block';
+}
+
+async function fbVerifyOtp(){
+  const entered = document.getElementById('fb-otp').value.trim();
+  if(entered !== fbOtpCode){
+    fbShowErr('err-otp', true);
+    fbSetBorder(document.getElementById('fb-otp'), 'var(--r)');
+    return;
+  }
+  fbShowErr('err-otp', false);
+
+  const btn = document.getElementById('fb-verify-btn');
+  btn.textContent = 'SENDING...';
+  btn.disabled = true;
+
+  const formData = new FormData();
+  formData.append('name',    document.getElementById('fb-name').value.trim());
+  formData.append('email',   document.getElementById('fb-email').value.trim());
+  formData.append('phone',   document.getElementById('fb-phone').value.trim());
+  formData.append('message', document.getElementById('fb-message').value.trim());
+  formData.append('_subject','KSV Discord Website — New Feedback');
+
+  try {
+    const res = await fetch('https://formspree.io/f/mojpgnpp', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if(res.ok){
+      document.getElementById('fb-step2').style.display = 'none';
+      document.getElementById('fb-success').style.display = 'block';
+    } else {
+      btn.textContent = 'FAILED — Try Again';
+      btn.disabled = false;
+    }
+  } catch(err){
+    btn.textContent = 'FAILED — Try Again';
+    btn.disabled = false;
+  }
+}
+</script>
+
+<script>
+(function(){
+  const loader=document.getElementById('loader');
+  const bar=document.getElementById('ld-bar');
+  const txt=document.getElementById('ld-txt');
+  const msgs=['Initializing...','Loading resources...','Setting up channels...','Almost ready...'];
+  let prog=0,idx=0;
+  const iv=setInterval(()=>{
+    prog+=Math.random()*18+5;
+    if(prog>90)prog=90;
+    bar.style.width=prog+'%';
+    txt.textContent=msgs[Math.min(idx,msgs.length-1)];
+    idx++;
+  },350);
+  window.addEventListener('load',()=>{
+    clearInterval(iv);
+    bar.style.width='100%';
+    txt.textContent='Welcome!';
+    setTimeout(()=>loader.classList.add('hide'),500);
+  });
+})();
+</script>
+<!-- ── WHAT'S NEW POPUP ── -->
+<div id="wn-fab" onclick="wnToggle()" title="What's New">
+  <span id="wn-dot"></span>
+  <span>What's New</span>
+</div>
+<div id="wn-backdrop" onclick="wnClose()"></div>
+<div id="wn-popup">
+  <div id="wn-header">
+    <div>
+      <div id="wn-title">🆕 What's New</div>
+      <div id="wn-version-line"></div>
+    </div>
+    <button id="wn-close" onclick="wnClose()">✕</button>
+  </div>
+  <div id="wn-body"></div>
+  <div id="wn-footer">NPCCSM · Niora Digital Solutions</div>
+</div>
+
+<script src="content.js"></script>
+<script>
+
+// ── FAQ ─────────────────────────────────────────────────
+function buildFaq(filter){
+  const list = document.getElementById('faq-list');
+  const statsEl = document.getElementById('faq-stats');
+  if(!list || !SITE.faq) return;
+  filter = (filter || '').toLowerCase().trim();
+
+  let totalQ = 0;
+  SITE.faq.forEach(cat => totalQ += cat.items.length);
+
+  let html = '';
+  let matchCount = 0;
+
+  SITE.faq.forEach((cat, ci) => {
+    const matched = cat.items.filter(item =>
+      !filter || item.q.toLowerCase().includes(filter) || item.a.toLowerCase().includes(filter)
+    );
+    if(!matched.length) return;
+    matchCount += matched.length;
+    html += `<div class="faq-cat-title"><span>${cat.icon}</span>${cat.category}</div>`;
+    matched.forEach((item, ii) => {
+      const id = 'fq-' + ci + '-' + ii;
+      const ans = item.a
+        .replace(/(discord\.gg\/[\w]+)/g, '<code>$1</code>')
+        .replace(/(!\w+(?:\s+\d+)?)/g, '<code>$1</code>')
+        .replace(/(\/\w+)/g, '<code>$1</code>');
+      html += `<div class="faq-item" id="${id}">
+        <div class="faq-q" onclick="faqToggle('${id}')">
+          <span class="faq-q-text">${item.q}</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-a">${ans}</div>
+      </div>`;
+    });
+  });
+
+  if(!html) html = `<div class="faq-no-results">
+    🔍 No results for "<strong style="color:#fff">${filter}</strong>"
+    <div class="faq-ask-card">
+      <div class="ask-title">💬 Didn't find your answer?</div>
+      <div class="ask-desc">Your question isn't in the FAQ yet. Send it directly — the Server Manager or team will get back to you.</div>
+      <div class="faq-ask-btns">
+        <button class="faq-ask-btn primary" onclick="nav('sec-feedback')">✉️ Ask via Feedback Form</button>
+        <a class="faq-ask-btn secondary" href="${SITE.discordInvite}" target="_blank">🎮 Ask on Discord</a>
+      </div>
+    </div>
+  </div>`;
+  list.innerHTML = html;
+
+  if(statsEl){
+    statsEl.innerHTML = filter
+      ? `<div class="faq-stat"><span>${matchCount}</span> results for "${filter}"</div>`
+      : `<div class="faq-stat">Total: <span>${totalQ}</span> questions</div>
+         <div class="faq-stat">Categories: <span>${SITE.faq.length}</span></div>`;
+  }
+}
+
+function faqToggle(id){
+  const item = document.getElementById(id);
+  if(!item) return;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-a').classList.remove('open');
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    item.querySelector('.faq-a').classList.add('open');
+  }
+}
+
+function faqFilter(val){
+  buildFaq(val);
+}
+
+// Build FAQ when section becomes visible
+const faqObserver = new MutationObserver(() => {
+  const sec = document.getElementById('sec-faq');
+  if(sec && sec.classList.contains('on')){
+    const list = document.getElementById('faq-list');
+    if(list && !list.innerHTML.trim()){
+      const inp = document.getElementById('faq-search');
+      if(inp) inp.value = '';
+      buildFaq('');
+    }
+  }
+});
+const faqTarget = document.getElementById('sec-faq');
+if(faqTarget) faqObserver.observe(faqTarget, { attributes:true, attributeFilter:['class'] });
+// ── /FAQ ─────────────────────────────────────────────────
+// ── WHAT'S NEW POPUP ────────────────────────────────────
+(function(){
+  const CL = SITE.changelog;
+  const VER_KEY = 'ksv_wn_seen_ver';
+  const seenVer = localStorage.getItem(VER_KEY);
+  const isNew = seenVer !== CL.currentVersion;
+  document.getElementById('wn-version-line').textContent = 'v' + CL.currentVersion + ' · ' + CL.releaseDate;
+  document.getElementById('wn-body').innerHTML = CL.updates.map(u =>
+    `<div class="wn-item"><span class="wn-tag ${u.type}">${u.type}</span><span class="wn-text">${u.text}</span></div>`
+  ).join('');
+  // FAB aur dot sirf tab dikho jab naya version ho
+  if(isNew){
+    document.getElementById('wn-fab').style.display = 'flex';
+    document.getElementById('wn-dot').classList.add('show');
+  }
+  window.wnToggle = function(){
+    const popup = document.getElementById('wn-popup');
+    const backdrop = document.getElementById('wn-backdrop');
+    if(popup.classList.contains('open')){ wnClose(); return; }
+    popup.classList.add('open');
+    backdrop.classList.add('show');
+    // Seen mark karo — dot aur FAB dono hide
+    localStorage.setItem(VER_KEY, CL.currentVersion);
+    document.getElementById('wn-dot').classList.remove('show');
+    document.getElementById('wn-fab').style.display = 'none';
+  };
+  window.wnClose = function(){
+    document.getElementById('wn-popup').classList.remove('open');
+    document.getElementById('wn-backdrop').classList.remove('show');
+  };
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') wnClose(); });
+})();
+// ── WELCOME OVERLAY ─────────────────────────────────────
+(function(){
+  const overlay = document.getElementById('wc-overlay');
+  const countEl = document.getElementById('wc-count');
+  const enterBtn = document.getElementById('wc-enter-btn');
+  let count = 5;
+
+  function dismissWelcome(){
+    overlay.classList.add('hide');
+  }
+
+  // Button click
+  enterBtn.addEventListener('click', dismissWelcome);
+
+  // Auto countdown — 5 sec
+  const iv = setInterval(function(){
+    count--;
+    countEl.textContent = count;
+    if(count <= 0){
+      clearInterval(iv);
+      dismissWelcome();
+    }
+  }, 1000);
+})();
+// ── /WELCOME OVERLAY ────────────────────────────────────
+
+// ── PWA SERVICE WORKER ──────────────────────────────────
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+  // URL mein hash hai to seedha us section pe jao
+  const hash = window.location.hash.replace('#','');
+  if(hash && document.getElementById('sec-'+hash)){
+    // App open karo phir section navigate karo
+    setTimeout(()=>{ nav(hash, null, false); }, 100);
+  }
+  // Initial state set karo
+  if(!window.history.state){
+    history.replaceState({section: currentSection}, '', window.location.href);
+  }
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

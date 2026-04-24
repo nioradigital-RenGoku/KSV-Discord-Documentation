@@ -1,0 +1,61 @@
+<!-- ══════════════════════════════════════════════════════════
+     PWA SETUP — KSV University Website
+     
+     3 FILES:
+     ─────────────────────────────────────────────────────────
+     1. manifest.json  → root folder me daalo
+     2. sw.js          → root folder me daalo
+     3. index.html     → neeche di gayi lines add karo
+══════════════════════════════════════════════════════════ -->
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 1: index.html me <head> ke andar,
+     <link rel="icon" ...> ke BAAD yeh add karo
+───────────────────────────────────────────────────────── -->
+
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#00d4ff"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="KSV Discord"/>
+
+
+<!-- ─────────────────────────────────────────────────────────
+     STEP 2: index.html me </body> se BILKUL PEHLE
+     (What's New popup code ke BAAD) yeh add karo
+───────────────────────────────────────────────────────── -->
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .catch(() => {});
+  });
+}
+</script>
+
+
+<!-- ─────────────────────────────────────────────────────────
+     CACHE VERSION UPDATE (jab bhi website update karo)
+     
+     sw.js me sirf yeh line badlo:
+     const CACHE_NAME = 'ksv-v2.0.0';
+                                 ↑
+                          version badlo (v2.1.0, v2.0.1 etc.)
+     
+     Yeh purana cache automatically delete kar dega!
+───────────────────────────────────────────────────────── -->
+
+
+<!-- ─────────────────────────────────────────────────────────
+     FILE STRUCTURE (sab root me hona chahiye)
+     
+     your-repo/
+     ├── index.html     ✅ already hai
+     ├── content.js     ✅ already hai
+     ├── og-banner.png  ✅ already hai
+     ├── manifest.json  ← NEW (download karo)
+     └── sw.js          ← NEW (download karo)
+───────────────────────────────────────────────────────── -->

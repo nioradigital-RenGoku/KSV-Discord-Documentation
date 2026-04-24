@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>404 — Page Not Found · KSV University</title>
+<meta name="robots" content="noindex"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4ff'/%3E%3Cpolygon points='32,8 56,18 32,28 8,18' fill='%23020408'/%3E%3Crect x='18' y='26' width='28' height='10' rx='2' fill='%231a1a2e'/%3E%3Cellipse cx='32' cy='36' rx='14' ry='3' fill='%23020408'/%3E%3Ctext x='32' y='56' text-anchor='middle' font-size='13' font-weight='700' fill='%23020408' font-family='monospace'%3EKSV%3C/text%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#020408;--surf:#060d14;--card:#0a1520;
+  --b1:#0f2535;--b2:#1a3a50;
+  --ac:#00d4ff;--g:#00ff88;--o:#ffaa00;--r:#ff4466;
+  --tx:#c8d8e8;--mu:#4a6a80;--di:#2a4a60;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* bg grid */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0;
+}
+/* scanlines */
+body::after{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.05) 2px,rgba(0,0,0,.05) 4px);
+  pointer-events:none;z-index:0;
+}
+
+.blob{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0;}
+
+/* TERMINAL CARD */
+.terminal{
+  position:relative;z-index:10;
+  width:min(560px,92vw);
+  background:var(--surf);
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(0,212,255,.06);
+}
+
+/* title bar */
+.t-bar{
+  background:var(--card);
+  border-bottom:1px solid var(--b1);
+  padding:10px 16px;
+  display:flex;align-items:center;gap:7px;
+}
+.dot{width:11px;height:11px;border-radius:50%;}
+.d1{background:#ff5f57;}
+.d2{background:#ffbd2e;}
+.d3{background:#28c840;}
+.t-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;color:var(--mu);
+  margin-left:8px;letter-spacing:1px;
+}
+
+/* terminal body */
+.t-body{padding:32px 28px 36px;}
+
+/* path line */
+.path-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;color:var(--mu);
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:6px;
+}
+.path-line .prompt{color:var(--g);}
+.path-line .cmd{color:var(--tx);}
+
+/* big 404 */
+.error-code{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(4rem,16vw,7rem);
+  font-weight:700;
+  color:var(--ac);
+  line-height:1;
+  letter-spacing:-4px;
+  margin-bottom:4px;
+}
+
+/* status line */
+.status-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.72rem,2.5vw,.88rem);
+  color:var(--r);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.status-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--r);
+  animation:blink 1.2s step-end infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+/* output lines */
+.output{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.7rem,2vw,.8rem);
+  line-height:2;
+  margin-bottom:28px;
+  border-left:2px solid var(--b2);
+  padding-left:14px;
+}
+.out-key{color:var(--mu);}
+.out-val{color:var(--tx);}
+.out-val.red{color:var(--r);}
+.out-val.green{color:var(--g);}
+.out-val.cyan{color:var(--ac);}
+
+/* cursor blink line */
+.cursor-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;
+  color:var(--mu);
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:4px;
+}
+.cursor{
+  display:inline-block;
+  width:9px;height:16px;
+  background:var(--ac);
+  animation:blink 1s step-end infinite;
+  border-radius:1px;
+}
+
+/* buttons */
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;font-weight:600;
+  padding:10px 20px;border-radius:6px;
+  text-decoration:none;cursor:pointer;
+  transition:all .18s;letter-spacing:.5px;
+  border:none;
+}
+.btn-home{
+  background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,255,136,.08));
+  border:1px solid rgba(0,212,255,.4);
+  color:#fff;
+}
+.btn-home:hover{
+  background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,255,136,.15));
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(0,212,255,.15);
+}
+.btn-discord{
+  background:transparent;
+  border:1px solid var(--b2);
+  color:var(--mu);
+}
+.btn-discord:hover{
+  border-color:rgba(88,101,242,.6);
+  color:#7289da;
+  background:rgba(88,101,242,.08);
+}
+
+/* footer */
+.t-footer{
+  border-top:1px solid var(--b1);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.58rem;color:var(--di);letter-spacing:.5px;
+}
+.t-footer .ping{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="blob"></div>
+
+<div class="terminal">
+
+  <!-- Title bar -->
+  <div class="t-bar">
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+    <div class="dot d3"></div>
+    <span class="t-title">ksv-discord — bash — 80×24</span>
+  </div>
+
+  <!-- Body -->
+  <div class="t-body">
+
+    <div class="path-line">
+      <span class="prompt">$</span>
+      <span class="cmd">cd <span id="bad-url">/this-page</span></span>
+    </div>
+
+    <div class="error-code">404</div>
+
+    <div class="status-line">
+      <span class="status-dot"></span>
+      PAGE_NOT_FOUND
+    </div>
+
+    <div class="output">
+      <div><span class="out-key">status   : </span><span class="out-val red">404 Error</span></div>
+      <div><span class="out-key">message  : </span><span class="out-val">This page does not exist</span></div>
+      <div><span class="out-key">server   : </span><span class="out-val cyan">KSV University · Discord Ecosystem</span></div>
+      <div><span class="out-key">suggest  : </span><span class="out-val green">Return to home or join Discord</span></div>
+    </div>
+
+    <div class="cursor-line">
+      <span>$ </span><span class="cursor"></span>
+    </div>
+
+    <div class="btn-row">
+      <a href="/" class="btn btn-home">↩ Go Home</a>
+      <a href="https://discord.gg/srTDAf2Qzh" target="_blank" class="btn btn-discord">🎮 Join Discord</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="t-footer">
+    <span>KSV University · NPCCSM · Niora Digital Solutions</span>
+    <span class="ping">● online</span>
+  </div>
+
+</div>
+
+<script>
+// Show actual wrong URL in the terminal path
+(function(){
+  try{
+    const path = window.location.pathname;
+    const el = document.getElementById('bad-url');
+    if(el && path && path !== '/404.html') el.textContent = path;
+  } catch(e){}
+})();
+</script>
+</body>
+</html>
