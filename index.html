@@ -1021,14 +1021,175 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <!-- /RESULT BOT DETAIL -->
   <div class="sec" id="sec-roadmap">
     <div class="ph">
-      <div class="ph-pre">Future Plans</div><h2><span class="hl">Roadmap</span></h2><p>What's coming next in the NPCCSM Bot Ecosystem.</p></div>
-    <div class="note">🎯 Goal: Complete College Discord Ecosystem — made by a student, for students, because the college doesn't care.</div>
-    <div class="botcard"><div class="bchdr" onclick="tb('r1')"><div class="bico">📊</div><div class="binfo"><div class="bname">Result Bot</div><div class="btag">Enter Exam No → Get marks instantly</div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="r1"><p class="bdesc">CR/LR links sheet per channel. Students enter Exam No via modal → ephemeral marks. Supports Internal 1–5 and External tabs. Deployed on Railway.</p><div style="margin-top:10px;"><button onclick="nav('result',null)" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--ac);font-size:.75rem;padding:8px 16px;border:none;border-radius:var(--rr);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;border:1px solid rgba(0,212,255,.3);">📊 View Details →</button></div></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('r2')"><div class="bico">🪪</div><div class="binfo"><div class="bname">Exam No Bot</div><div class="btag">Enrollment No → Exam No + Subject codes</div></div><div><span class="s-next">UP NEXT</span></div></div><div class="bbody" id="r2"><p class="bdesc">Built because college gave zero notification and clerk refused hall ticket without exam number.</p></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('r3')"><div class="bico">📅</div><div class="binfo"><div class="bname">Exam Timetable Bot</div><div class="btag">Query exam schedule anytime</div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="r3"><p class="bdesc">No more screenshot hunting in WhatsApp groups. Search schedule directly in Discord.</p></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('r4')"><div class="bico">🔔</div><div class="binfo"><div class="bname">Reminder Bot</div><div class="btag">Never miss a deadline again</div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="r4"><p class="bdesc">Assignments, submissions, exam dates — custom reminders inside Discord.</p></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('r6')"><div class="bico">📚</div><div class="binfo"><div class="bname">Notes Bot</div><div class="btag">!notes → year → subject → PDF in DM</div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="r6"><p class="bdesc">Role-gated PDF notes delivery. Join Discord → get year role → use !notes → PDF arrives in DM instantly. Powered by Google Drive.</p></div></div>
-      
+      <div class="ph-pre">Bot Ecosystem · Timeline</div>
+      <h2><span class="hl">Roadmap</span></h2>
+      <p>From idea to deployment — a complete timeline of the NPCCSM Bot Ecosystem.</p>
+    </div>
+    <div class="note" style="margin-bottom:24px;">🎯 Goal: Complete College Discord Ecosystem — made by a student, for students, because the college doesn't care.</div>
+
+    <!-- ── TIMELINE WRAPPER ── -->
+    <div style="position:relative;padding-left:28px;">
+
+      <!-- vertical line -->
+      <div style="position:absolute;left:9px;top:6px;bottom:0;width:2px;background:linear-gradient(180deg,var(--g),var(--ac),var(--b2),var(--b1));border-radius:2px;"></div>
+
+      <!-- ── COMPLETED ── -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+        <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g);"></div>
+        ✓ Completed
+      </div>
+
+      <!-- Attendance Bot -->
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Mar 2026</span>
+          <span class="s-live" style="font-size:.55rem;">LIVE</span>
+        </div>
+        <div class="botcard" style="margin-bottom:0;">
+          <div class="bchdr" onclick="tb('r_a1')">
+            <div class="bico">📋</div>
+            <div class="binfo">
+              <div class="bname">Attendance Bot</div>
+              <div class="btag">Automated attendance tracking via Google Sheets</div>
+              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div>
+            </div>
+          </div>
+          <div class="bbody" id="r_a1">
+            <p class="bdesc">The first bot — built to replace paper registers. CR/LR marks attendance via Discord commands. Students get attendance % in DMs via !report. 11 commands, 60+ students, 0 manual work.</p>
+            <div style="margin-top:10px;"><button onclick="nav('attendance',null)" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--ac);font-size:.75rem;padding:8px 16px;border-radius:var(--rr);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;">📋 View Details →</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes Bot -->
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Apr 2026</span>
+          <span class="s-live" style="font-size:.55rem;">LIVE</span>
+        </div>
+        <div class="botcard" style="margin-bottom:0;">
+          <div class="bchdr" onclick="tb('r_n1')">
+            <div class="bico">📚</div>
+            <div class="binfo">
+              <div class="bname">Notes Bot</div>
+              <div class="btag">Subject-wise PDF notes delivered to your DM</div>
+              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">Google Drive</span><span class="tag g">Railway</span></div>
+            </div>
+          </div>
+          <div class="bbody" id="r_n1">
+            <p class="bdesc">Role-gated PDF delivery — !notes → pick year → pick subject → PDF lands in DM instantly. Powered by Google Drive folder structure.</p>
+            <div style="margin-top:10px;"><button onclick="nav('notes',null)" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--ac);font-size:.75rem;padding:8px 16px;border-radius:var(--rr);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;">📚 View Details →</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Bot -->
+      <div style="margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Apr 2026</span>
+          <span class="s-live" style="font-size:.55rem;">LIVE</span>
+        </div>
+        <div class="botcard" style="margin-bottom:0;">
+          <div class="bchdr" onclick="tb('r_r1')">
+            <div class="bico">📊</div>
+            <div class="binfo">
+              <div class="bname">Result Bot</div>
+              <div class="btag">Check internal & external marks via Exam Number</div>
+              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div>
+            </div>
+          </div>
+          <div class="bbody" id="r_r1">
+            <p class="bdesc">/result → select tab (Internal 1–5 / External) → enter Exam No → marks sent ephemerally. Auto-reads from Google Drive folder. No manual setup needed.</p>
+            <div style="margin-top:10px;"><button onclick="nav('result',null)" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--ac);font-size:.75rem;padding:8px 16px;border-radius:var(--rr);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;">📊 View Details →</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── IN PROGRESS / UPCOMING ── -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--o);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+        <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--o);box-shadow:0 0 10px var(--o);"></div>
+        ⚡ Up Next
+      </div>
+
+      <!-- Exam No Bot -->
+      <div style="margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Coming Soon</span>
+          <span class="s-next" style="font-size:.55rem;">UP NEXT</span>
+        </div>
+        <div class="botcard" style="margin-bottom:0;">
+          <div class="bchdr" onclick="tb('r_e1')">
+            <div class="bico">🪪</div>
+            <div class="binfo">
+              <div class="bname">Exam No Bot</div>
+              <div class="btag">Enrollment No → Exam No + Subject Codes</div>
+              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span></div>
+            </div>
+          </div>
+          <div class="bbody" id="r_e1">
+            <p class="bdesc">Born from a real frustration — college gave zero exam notification and the clerk refused to help without an Exam Number. Enter Enrollment No → get Exam No + Subject Codes instantly. No clerk visit needed.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PLANNED ── -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--mu);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+        <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--b2);border:2px solid var(--mu);"></div>
+        📋 Planned
+      </div>
+
+      <!-- Timetable Bot -->
+      <div style="margin-bottom:14px;">
+        <div class="botcard" style="margin-bottom:0;opacity:.75;">
+          <div class="bchdr" onclick="tb('r_t1')">
+            <div class="bico">📅</div>
+            <div class="binfo">
+              <div class="bname">Exam Timetable Bot</div>
+              <div class="btag">Query exam schedule anytime — no WhatsApp hunting</div>
+            </div>
+            <div><span class="s-plan">PLANNING</span></div>
+          </div>
+          <div class="bbody" id="r_t1">
+            <p class="bdesc">Search exam schedule by date or subject directly in Discord. No more digging through WhatsApp screenshot chains.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reminder Bot -->
+      <div style="margin-bottom:14px;">
+        <div class="botcard" style="margin-bottom:0;opacity:.75;">
+          <div class="bchdr" onclick="tb('r_rm1')">
+            <div class="bico">🔔</div>
+            <div class="binfo">
+              <div class="bname">Reminder Bot</div>
+              <div class="btag">Never miss a deadline again</div>
+            </div>
+            <div><span class="s-plan">PLANNING</span></div>
+          </div>
+          <div class="bbody" id="r_rm1">
+            <p class="bdesc">Set custom reminders for assignments, submissions, and exam dates — all inside Discord.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notebook Bot -->
+      <div style="margin-bottom:14px;">
+        <div class="botcard" style="margin-bottom:0;opacity:.75;">
+          <div class="bchdr" onclick="tb('r_nb1')">
+            <div class="bico">📝</div>
+            <div class="binfo">
+              <div class="bname">Notebook Bot</div>
+              <div class="btag">Personal encrypted notebook in Discord DMs</div>
+            </div>
+            <div><span class="s-plan">PLANNING</span></div>
+          </div>
+          <div class="bbody" id="r_nb1">
+            <p class="bdesc">DM-based personal notebook — Add, Get, Edit, Delete notes across categories (Academic / Personal / General). Fernet-encrypted storage.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline wrapper -->
   </div>
 
   <!-- PRESENTATION -->
