@@ -7,6 +7,29 @@ Format: `[Version] - DD/MM/YYYY` → What changed
 
 ---
 
+## [2.2.0] - 25/04/2026
+
+### 🤖 Result Bot Launch
+
+#### Added
+- Result Bot full documentation page added (`sec-result`)
+- Complete commands table: `/result`, `/link`, `/unlink`
+- Sheet format table with column layout explanation
+- Google Drive folder structure diagram (terminal style)
+- How-to-use step-by-step access guide
+
+#### Changed
+- Result Bot status updated: `BETA → LIVE` across all sections (sidebar, bots overview, roadmap)
+- Bot Ecosystem overview card updated with "VIEW FULL DETAILS" button for Result Bot
+- Version bumped to v2.2 · 25/04/2026
+- Hero stats updated: "6 Bots Built → 3 Bots Live"
+- FAQ Result Bot answers updated with live status info
+
+#### Fixed
+- Service Worker cache version bumped to `ksv-v2.2.0`
+
+---
+
 ## [2.1.0] - 13/04/2026
 
 ### ✨ Feature Update

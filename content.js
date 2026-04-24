@@ -10,18 +10,18 @@ const SITE = {
   university: "KSV University – Kadi",
   college: "Narsinhbhai Patel College of Computer Studies & Management",
   collegeShort: "NPCCSM",
-  version: "2.1",
-  lastUpdated: "13/04/2026",
+  version: "2.2",
+  lastUpdated: "25/04/2026",
 
   // ── CHANGELOG (for What's New popup) ────────────────────
   changelog: {
-    currentVersion: "2.1.0",
-    releaseDate: "13/04/2026",
+    currentVersion: "2.2.0",
+    releaseDate: "25/04/2026",
     updates: [
-      { type: "new",      text: "Why Discord? section added — full comparison vs WhatsApp & Email" },
-      { type: "improved", text: "Bot Ecosystem section expanded with full details" },
-      { type: "improved", text: "Mobile responsive layout improved across all pages" },
-      { type: "fixed",    text: "Google Analytics tracking enabled (G-DK38RGJKLB)" }
+      { type: "new",      text: "Result Bot launched — check marks via Exam No instantly" },
+      { type: "new",      text: "Result Bot full documentation page added to website" },
+      { type: "improved", text: "Bot Ecosystem updated with live Result Bot status" },
+      { type: "improved", text: "Roadmap updated — Exam No Bot is next in queue" }
     ]
   },
   builtBy: "RenGoku (Vadalia Vraj Kaushikbhai)",
@@ -269,15 +269,15 @@ const SITE = {
       id: "result",
       name: "Result Bot",
       icon: "📊",
-      status: "testing",
-      statusLabel: "Local Testing",
+      status: "live",
+      statusLabel: "Live & Deployed",
       tagline: "Check internal & external marks via Exam Number",
-      desc: "Students enter their Exam No via a modal popup and get their marks sent ephemerally. CR/LR links the marks sheet per channel. Supports Internal (1-5) and External tabs.",
-      tech: ["Python", "discord.py", "gspread", "Slash Commands"],
+      desc: "Students enter their Exam No via a modal popup and get their marks sent ephemerally. CR/LR links the marks sheet per channel. Supports Internal (1-5) and External tabs. Drive folder-based structure — no manual sheet linking needed.",
+      tech: ["Python", "discord.py", "gspread", "Slash Commands", "Railway.app"],
       commands: [
-        { cmd: "/link", desc: "Link a Google Sheet to a channel", access: "CR/LR + Faculty" },
-        { cmd: "/unlink", desc: "Remove a linked sheet", access: "CR/LR + Faculty" },
-        { cmd: "/result", desc: "Check your marks via Exam No", access: "Everyone" }
+        { cmd: "/link", desc: "Link a Google Drive folder tab to a channel", access: "CR/LR + Faculty" },
+        { cmd: "/unlink", desc: "Remove a linked sheet from channel", access: "CR/LR + Faculty" },
+        { cmd: "/result", desc: "Check your marks via Exam No (ephemeral)", access: "Everyone" }
       ]
     },
 
@@ -347,8 +347,8 @@ const SITE = {
       category: "Result Bot",
       icon: "📊",
       items: [
-        { q: "How do I check my marks using the Result Bot?", a: "Use the /result command. The bot will show tab buttons (Internal-1 to Internal-5, External) — select your tab, then enter your Exam Number in the modal. Your marks are shown only to you (ephemeral)." },
-        { q: "Where can I find my Exam Number?", a: "The Exam No Bot is currently in development (next in queue). For now, you can ask the clerk office or your CR/LR. Once the Exam No Bot launches, you'll be able to get it automatically via your enrollment number." },
+        { q: "How do I check my marks using the Result Bot?", a: "Use the /result command in your division channel. The bot shows tab buttons (Internal-1 to Internal-5, External) — select your tab, then enter your Exam Number in the modal popup. Your marks are shown only to you (ephemeral — no one else sees it)." },
+        { q: "Where can I find my Exam Number?", a: "Use the /examno command once the Exam No Bot launches (next in development queue). For now, use /result and enter the Exam Number from your hall ticket or ask your CR/LR." },
         { q: "What is the difference between the Result Bot and Attendance Bot?", a: "The Attendance Bot uses prefix commands (!report, !low, etc.) and pulls live data from Google Sheets. The Result Bot uses slash commands (/result) and fetches data from the marks sheet." },
         { q: "My result isn't showing — the bot sent nothing?", a: "Check if CR/LR has linked the sheet to that channel using the /link command. If not, ask them to do so. If it's already linked, make sure you're entering the correct Exam Number." }
       ]
@@ -361,7 +361,7 @@ const SITE = {
         { q: "Can I install this website as an app on my phone?", a: "Yes! PWA support is available. In Chrome, use the 'Add to Home Screen' option. On iOS, open Safari → Share → Add to Home Screen. You'll get an app icon with offline support." },
         { q: "I found a bug or have a suggestion — where do I send it?", a: "Go to the Help & Feedback section and fill out the form. After OTP email verification, the form will be submitted. You can also contact us directly via WhatsApp or Instagram." },
         { q: "Where can I find the bot source code?", a: "github.com/vadaliavraj0214-creator/Attendance-Bot — the Attendance Bot is open source. Other bots will gradually be added to GitHub as well." },
-        { q: "How often is the site updated?", a: "Whenever a new bot is launched, a feature is added, or content changes. The version and date are visible in the hero section (v2.1 · 13/04/2026)." }
+        { q: "How often is the site updated?", a: "Whenever a new bot is launched, a feature is added, or content changes. The version and date are visible in the hero section (v2.2 · 25/04/2026). Result Bot just went live!" }
       ]
     },
     {
