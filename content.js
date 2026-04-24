@@ -272,12 +272,10 @@ const SITE = {
       status: "live",
       statusLabel: "Live & Deployed",
       tagline: "Check internal & external marks via Exam Number",
-      desc: "Students enter their Exam No via a modal popup and get their marks sent ephemerally. CR/LR links the marks sheet per channel. Supports Internal (1-5) and External tabs. Drive folder-based structure — no manual sheet linking needed.",
+      desc: "Students enter their Exam No via a modal popup and get their marks sent ephemerally — only visible to them. Bot automatically reads from Google Drive folder structure. No manual linking needed. Supports Internal (1-5) and External tabs.",
       tech: ["Python", "discord.py", "gspread", "Slash Commands", "Railway.app"],
       commands: [
-        { cmd: "/link", desc: "Link a Google Drive folder tab to a channel", access: "CR/LR + Faculty" },
-        { cmd: "/unlink", desc: "Remove a linked sheet from channel", access: "CR/LR + Faculty" },
-        { cmd: "/result", desc: "Check your marks via Exam No (ephemeral)", access: "Everyone" }
+        { cmd: "/result", desc: "Select year/sem tab → enter Exam No → marks sent privately (ephemeral)", access: "Everyone" }
       ]
     },
 
@@ -350,7 +348,7 @@ const SITE = {
         { q: "How do I check my marks using the Result Bot?", a: "Use the /result command in your division channel. The bot shows tab buttons (Internal-1 to Internal-5, External) — select your tab, then enter your Exam Number in the modal popup. Your marks are shown only to you (ephemeral — no one else sees it)." },
         { q: "Where can I find my Exam Number?", a: "Use the /examno command once the Exam No Bot launches (next in development queue). For now, use /result and enter the Exam Number from your hall ticket or ask your CR/LR." },
         { q: "What is the difference between the Result Bot and Attendance Bot?", a: "The Attendance Bot uses prefix commands (!report, !low, etc.) and pulls live data from Google Sheets. The Result Bot uses slash commands (/result) and fetches data from the marks sheet." },
-        { q: "My result isn't showing — the bot sent nothing?", a: "Check if CR/LR has linked the sheet to that channel using the /link command. If not, ask them to do so. If it's already linked, make sure you're entering the correct Exam Number." }
+        { q: "My result isn't showing — the bot sent nothing?", a: "Make sure you're entering the correct Exam Number. The bot reads directly from the Google Drive folder — no manual setup is needed by CR/LR. If the issue persists, the sheet for that particular tab (Internal-1, External, etc.) may not have been uploaded yet by the faculty. Contact your CR/LR or faculty to confirm." }
       ]
     },
     {

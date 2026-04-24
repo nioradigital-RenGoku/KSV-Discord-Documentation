@@ -837,19 +837,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       
   </div>
 
-  <!-- RESULT BOT -->
-  <div class="sec" id="sec-result">
-    <div class="ph">
-      <div class="ph-pre">Bot · Local Testing</div><h2><span class="hl">Result</span> Bot</h2><p>Check internal and external marks privately via Exam Number — directly in Discord.</p></div>
-    <div class="card"><div class="ct">📊 How it works</div><p>CR/LR links a Google Sheet per channel using /link. Students click a button → select tab (Internal 1–5 or External) → enter Exam No in modal → get marks ephemerally (only they can see).</p></div>
-    <div class="cmdbox"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
-      <tr><td><span class="cm">/link</span><span class="cx">/link Internal https://...</span></td><td><span class="cd">Link a Google Sheet to this channel with a label.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
-      <tr><td><span class="cm">/unlink</span><span class="cx">/unlink Internal</span></td><td><span class="cd">Remove a linked sheet from this channel.</span></td><td><span class="wcr">CR/LR+Faculty</span></td></tr>
-      <tr><td><span class="cm">/result</span><span class="cx">/result</span></td><td><span class="cd">Check your marks — tab → Exam No → ephemeral result.</span></td><td><span class="wall">Everyone</span></td></tr>
-    </tbody></table></div>
-      
-  </div>
-
   <!-- NOTES BOT -->
   <div class="sec" id="sec-notes">
     <div class="ph">
@@ -933,29 +920,27 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Commands</div></div>
+      <div class="stat"><div class="stat-n">1</div><div class="stat-l">Command</div></div>
       <div class="stat"><div class="stat-n">7</div><div class="stat-l">Sheet Tabs</div></div>
       <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Online</div></div>
-      <div class="stat"><div class="stat-n">🔒</div><div class="stat-l">Private DM</div></div>
+      <div class="stat"><div class="stat-n">🔒</div><div class="stat-l">Private Only</div></div>
     </div>
 
     <!-- How it works -->
     <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⚡ How It Works</div>
     <div class="sbox" style="margin-bottom:20px;">
       <p>
-        1️⃣ CR/LR runs <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">/link</span> in their division channel — links the result sheet<br/><br/>
-        2️⃣ Student runs <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">/result</span> → tab buttons appear (Internal-1 to Internal-5, External)<br/><br/>
-        3️⃣ Student selects a tab → a popup (modal) appears asking for Exam Number<br/><br/>
-        4️⃣ Bot reads the sheet → sends marks <strong>ephemerally</strong> — only the student sees it
+        1️⃣ Student runs <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">/result</span> in their division channel → year/sem tab buttons appear (Internal-1 to Internal-5, External)<br/><br/>
+        2️⃣ Student selects a tab → a popup (modal) appears asking for Exam Number<br/><br/>
+        3️⃣ Bot automatically reads from the connected Google Drive folder → finds the matching sheet<br/><br/>
+        4️⃣ Marks sent <strong>ephemerally</strong> — only the student who ran the command sees them
       </p>
     </div>
 
     <!-- Commands -->
     <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⌨️ Commands</div>
     <div class="cmdbox" style="margin-bottom:20px;"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
-      <tr><td><span class="cm">/result</span></td><td><span class="cd">Shows tab buttons → enter Exam No → marks sent privately (ephemeral).</span></td><td><span class="wall">Everyone</span></td></tr>
-      <tr><td><span class="cm">/link</span></td><td><span class="cd">Link a Google Drive result folder tab to this channel.</span></td><td><span class="wcr">CR/LR + Faculty</span></td></tr>
-      <tr><td><span class="cm">/unlink</span></td><td><span class="cd">Remove the linked result sheet from this channel.</span></td><td><span class="wcr">CR/LR + Faculty</span></td></tr>
+      <tr><td><span class="cm">/result</span></td><td><span class="cd">Shows year/sem tab buttons → select tab → enter Exam No → marks sent privately (ephemeral).</span></td><td><span class="wall">Everyone</span></td></tr>
     </tbody></table></div>
 
     <!-- Sheet format -->
