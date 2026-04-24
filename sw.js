@@ -8,11 +8,11 @@ const CACHE_NAME = 'ksv-v2.1.0';
 
 // Yeh files offline me bhi available rahegi
 const CACHE_FILES = [
-  '/',
-  '/index.html',
-  '/content.js',
-  '/og-banner.png',
-  '/manifest.json'
+  '/KSV-Discord-Website/',
+  '/KSV-Discord-Website/index.html',
+  '/KSV-Discord-Website/content.js',
+  '/KSV-Discord-Website/og-banner.png',
+  '/KSV-Discord-Website/manifest.json'
 ];
 
 // ── INSTALL: files cache karo ─────────────────────────────
@@ -72,7 +72,7 @@ self.addEventListener('fetch', event => {
         })
         .catch(() => {
           // Offline aur cache me bhi nahi — index.html dikhao
-          return caches.match('/index.html');
+          return caches.match('/KSV-Discord-Website/index.html');
         });
     })
   );
