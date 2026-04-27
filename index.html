@@ -14,7 +14,7 @@
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://vadaliavraj0214-creator.github.io/KSV-Discord-Website/og-banner.png"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4ff'/%3E%3Cpolygon points='32,8 56,18 32,28 8,18' fill='%23020408'/%3E%3Crect x='18' y='26' width='28' height='10' rx='2' fill='%231a1a2e'/%3E%3Cellipse cx='32' cy='36' rx='14' ry='3' fill='%23020408'/%3E%3Ctext x='32' y='56' text-anchor='middle' font-size='13' font-weight='700' fill='%23020408' font-family='monospace'%3EKSV%3C/text%3E%3C/svg%3E"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4ff'/%3E%3Cpolygon points='32,8 56,18 32,28 8,18' fill='%23020408'/%3E%3Crect x='18' y='26' width='28' height='10' rx='2' fill='%231a1a2e'/%3E%3Cellipse cx='32' cy='36' rx='14' ry='3' fill='%23020408'/%3E%3Ctext x='32' y='56' text-anchor='middle' font-size='13' font-weight='700' fill='%23ffffff' font-family='monospace'%3EKSV%3C/text%3E%3C/svg%3E"/>
 <link rel="manifest" href="/KSV-Discord-Website/manifest.json"/>
 <meta name="theme-color" content="#00d4ff"/>
 <meta name="mobile-web-app-capable" content="yes"/>
@@ -637,7 +637,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Bots Live</div></div>
     <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Online</div></div>
   </div>
-  <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--di);letter-spacing:1px;margin-bottom:16px;animation:fadeDown .8s .5s ease both;">Created by <span style="color:var(--ac);">RenGoku</span> · 2026<br>Niora Digital Solutions</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--di);letter-spacing:1px;margin-bottom:16px;animation:fadeDown .8s .5s ease both;">Created by <span style="color:var(--ac);">RenGoku</span> · 2026<br/>Niora Digital Solutions</div>
   <div class="hero-scroll" onclick="enterApp()">
     <span>SCROLL DOWN</span>
     <span class="scroll-arrow">↓</span>
@@ -699,7 +699,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Members</div></div>
       <div class="stat"><div class="stat-n">3</div><div class="stat-l">Departments</div></div>
       <div class="stat"><div class="stat-n">12</div><div class="stat-l">Divisions</div></div>
-      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Bots Built</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Bots Live</div></div>
     </div>
     <div class="card"><div class="ct">🎯 Purpose</div><ul><li>Sharing academic announcements</li><li>Discussing study topics and coursework</li><li>Providing exam and academic information</li><li>Connecting students with faculty members</li><li>Sharing study resources and important updates</li></ul></div>
     <div class="g2">
@@ -2089,7 +2089,7 @@ function buildFaq(filter){
       const ans = item.a
         .replace(/(discord\.gg\/[\w]+)/g, '<code>$1</code>')
         .replace(/(!\w+(?:\s+\d+)?)/g, '<code>$1</code>')
-        .replace(/(\/\w+)/g, '<code>$1</code>');
+        .replace(/\B(\/[a-z_]+)\b/g, '<code>$1</code>');
       html += `<div class="faq-item" id="${id}">
         <div class="faq-q" onclick="faqToggle('${id}')">
           <span class="faq-q-text">${item.q}</span>

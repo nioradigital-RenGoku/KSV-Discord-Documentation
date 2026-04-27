@@ -8,7 +8,6 @@ const CACHE_NAME = 'ksv-v2.2.0';
 
 // Yeh files offline me bhi available rahegi
 const CACHE_FILES = [
-  '/KSV-Discord-Website/',
   '/KSV-Discord-Website/index.html',
   '/KSV-Discord-Website/content.js',
   '/KSV-Discord-Website/og-banner.png',
