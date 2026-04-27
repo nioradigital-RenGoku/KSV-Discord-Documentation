@@ -288,7 +288,7 @@ const SITE = {
       status: "live",
       statusLabel: "Live & Deployed",
       tagline: "Get your Exam Number via Enrollment Number",
-      desc: "Born from a real frustration — missed an exam because college gave no notification. Enter Enrollment No → Get Exam No + Subject codes instantly. No more clerk drama.",
+      desc: "Enter your Enrollment Number and get your Exam Number + Subject codes instantly — sent privately, only visible to you. No manual lookup needed.",
       tech: ["Python", "discord.py", "gspread", "Railway.app"],
       commands: [
         { cmd: "/examno", desc: "Select year → enter Enrollment No → Exam No + Name + Subjects sent privately (ephemeral)", access: "Everyone" }
@@ -362,7 +362,7 @@ const SITE = {
         { q: "Can I install this website as an app on my phone?", a: "Yes! PWA support is available. In Chrome, use the 'Add to Home Screen' option. On iOS, open Safari → Share → Add to Home Screen. You'll get an app icon with offline support." },
         { q: "I found a bug or have a suggestion — where do I send it?", a: "Go to the Help & Feedback section and fill out the form. After OTP email verification, the form will be submitted. You can also contact us directly via WhatsApp or Instagram." },
         { q: "Where can I find the bot source code?", a: "github.com/vadaliavraj0214-creator/Attendance-Bot — the Attendance Bot is open source. Other bots will gradually be added to GitHub as well." },
-        { q: "How often is the site updated?", a: "Whenever a new bot is launched, a feature is added, or content changes. The version and date are visible in the hero section (v2.2 · 25/04/2026). Result Bot just went live!" }
+        { q: "How often is the site updated?", a: "Whenever a new bot is launched, a feature is added, or content changes. The version and date are visible in the hero section (v2.3 · 28/04/2026). Exam No Bot just went live!" }
       ]
     },
     {
