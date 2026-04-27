@@ -634,7 +634,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-n">500+</div><div class="hstat-l">Members</div></div>
     <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Departments</div></div>
-    <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Bots Live</div></div>
+    <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Bots Live</div></div>
     <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Online</div></div>
   </div>
   <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--di);letter-spacing:1px;margin-bottom:16px;animation:fadeDown .8s .5s ease both;">Created by <span style="color:var(--ac);">RenGoku</span> · 2026<br/>Niora Digital Solutions</div>
@@ -680,6 +680,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <a class="sb-lnk" onclick="nav('attendance',this)"><span class="ic">📋</span>Attendance Bot<span class="sb-badge bg">LIVE</span></a>
     <a class="sb-lnk" onclick="nav('notes',this)"><span class="ic">📚</span>Notes Bot<span class="sb-badge bg">LIVE</span></a>
     <a class="sb-lnk" onclick="nav('result',this)"><span class="ic">📊</span>Result Bot<span class="sb-badge bg">LIVE</span></a>
+    <a class="sb-lnk" onclick="nav('examno',this)"><span class="ic">🪪</span>Exam No Bot<span class="sb-badge bg">LIVE</span></a>
     <a class="sb-lnk" onclick="nav('roadmap',this)"><span class="ic">🗺️</span>Roadmap<span class="sb-badge bd">+4</span></a>
     <div class="sb-cat">Support</div>
     <a class="sb-lnk" onclick="nav('faq',this)"><span class="ic">❓</span>Help / FAQ</a>
@@ -699,7 +700,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Members</div></div>
       <div class="stat"><div class="stat-n">3</div><div class="stat-l">Departments</div></div>
       <div class="stat"><div class="stat-n">12</div><div class="stat-l">Divisions</div></div>
-      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Bots Live</div></div>
+      <div class="stat"><div class="stat-n">4</div><div class="stat-l">Bots Live</div></div>
     </div>
     <div class="card"><div class="ct">🎯 Purpose</div><ul><li>Sharing academic announcements</li><li>Discussing study topics and coursework</li><li>Providing exam and academic information</li><li>Connecting students with faculty members</li><li>Sharing study resources and important updates</li></ul></div>
     <div class="g2">
@@ -784,10 +785,10 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <!-- ALL BOTS -->
   <div class="sec" id="sec-bots">
     <div class="ph"><div class="ph-pre">NPCCSM · Bot Ecosystem</div><h2><span class="hl">Bot</span> Ecosystem</h2><p>A complete suite of utility bots built for NPCCSM students. Click any bot to expand details.</p></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('b1')"><div class="bico">📋</div><div class="binfo"><div class="bname">Attendance Bot</div><div class="btag">Automated attendance tracking via Google Sheets</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b1"><p class="bdesc">Tracks lecture-wise attendance for 60+ students. CR/LR marks attendance via commands. Students check their own % via !report — report sent to DM. Auto-calculates percentages, flags defaulters.</p><div style="margin-top:14px;"><button onclick="nav('attendance',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📋 VIEW FULL DETAILS →</button></div></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('b2')"><div class="bico">📚</div><div class="binfo"><div class="bname">Notes Bot</div><div class="btag">Subject-wise study notes delivered to your DM</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">Google Drive</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b2"><p class="bdesc">Access subject-wise PDF notes directly in Discord. Use !notes → select your year (FYBCA/SYBCA/TYBCA) → pick subject → PDF link arrives in your DM. Role-gated — only accessible after joining the server and getting your year role.</p><div style="margin-top:14px;"><button onclick="nav('notes',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📚 VIEW FULL DETAILS →</button></div></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('b3')"><div class="bico">📊</div><div class="binfo"><div class="bname">Result Bot</div><div class="btag">Check internal & external marks via Exam Number</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b3"><p class="bdesc">Students enter Exam No via modal popup → marks sent ephemerally (only visible to you). CR/LR links marks sheet per channel. Supports Internal 1–5 and External tabs. Drive folder-based — no manual setup per sheet.</p><div style="margin-top:14px;"><button onclick="nav('result',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📊 VIEW FULL DETAILS →</button></div></div></div>
-    <div class="botcard"><div class="bchdr" onclick="tb('b4')"><div class="bico">🪪</div><div class="binfo"><div class="bname">Exam No Bot</div><div class="btag">Enrollment No → Exam No + Subject codes</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-next">UP NEXT</span></div></div><div class="bbody" id="b4"><p class="bdesc">Enter Enrollment No → Get Exam No + Subject codes. Built because the college gave zero notification about exams and the clerk refused to help.</p></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b1')"><div class="bico">a.</div><div class="binfo"><div class="bname">📋 Attendance Bot</div><div class="btag">Automated attendance tracking via Google Sheets</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b1"><p class="bdesc">Tracks lecture-wise attendance for 60+ students. CR/LR marks attendance via commands. Students check their own % via !report — report sent to DM. Auto-calculates percentages, flags defaulters.</p><div style="margin-top:14px;"><button onclick="nav('attendance',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📋 VIEW FULL DETAILS →</button></div></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b2')"><div class="bico">b.</div><div class="binfo"><div class="bname">📚 Notes Bot</div><div class="btag">Subject-wise study notes delivered to your DM</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">Google Drive</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b2"><p class="bdesc">Access subject-wise PDF notes directly in Discord. Use !notes → select your year (FYBCA/SYBCA/TYBCA) → pick subject → PDF link arrives in your DM. Role-gated — only accessible after joining the server and getting your year role.</p><div style="margin-top:14px;"><button onclick="nav('notes',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📚 VIEW FULL DETAILS →</button></div></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b3')"><div class="bico">c.</div><div class="binfo"><div class="bname">📊 Result Bot</div><div class="btag">Check internal & external marks via Exam Number</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b3"><p class="bdesc">Students enter Exam No via modal popup → marks sent ephemerally (only visible to you). CR/LR links marks sheet per channel. Supports Internal 1–5 and External tabs. Drive folder-based — no manual setup per sheet.</p><div style="margin-top:14px;"><button onclick="nav('result',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">📊 VIEW FULL DETAILS →</button></div></div></div>
+    <div class="botcard"><div class="bchdr" onclick="tb('b4')"><div class="bico">d.</div><div class="binfo"><div class="bname">🪪 Exam No Bot</div><div class="btag">Enrollment No → Exam No + Subject codes instantly</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div></div><div><span class="s-live">LIVE</span></div></div><div class="bbody" id="b4"><p class="bdesc">Born from a real frustration — college gave zero exam notification and the clerk refused to help without an Exam Number. Enter Enrollment No → get Exam No + Subject Codes instantly. No clerk visit needed.</p><div style="margin-top:14px;"><button onclick="nav('examno',null)" style="background:linear-gradient(90deg,var(--ac),var(--g));color:#020408;font-weight:700;font-size:.8rem;padding:10px 22px;border:none;border-radius:var(--rr);cursor:pointer;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">🪪 VIEW FULL DETAILS →</button></div></div></div>
     <div class="botcard"><div class="bchdr" onclick="tb('b5')"><div class="bico">📅</div><div class="binfo"><div class="bname">Exam Timetable Bot</div><div class="btag">Query exam schedule anytime</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="b5"><p class="bdesc">Search exam schedule by date or subject. No more hunting screenshots in WhatsApp groups.</p></div></div>
     <div class="botcard"><div class="bchdr" onclick="tb('b6')"><div class="bico">🔔</div><div class="binfo"><div class="bname">Reminder Bot</div><div class="btag">Never miss a deadline again</div><div style="margin-top:6px;"><span class="tag">Python</span><span class="tag">discord.py</span></div></div><div><span class="s-plan">PLANNING</span></div></div><div class="bbody" id="b6"><p class="bdesc">Schedule custom reminders for assignments, submissions, and exam dates — right inside Discord.</p></div></div>
       
@@ -1019,6 +1020,110 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     </div>
   </div>
   <!-- /RESULT BOT DETAIL -->
+
+  <!-- EXAM NO BOT DETAIL -->
+  <div class="sec" id="sec-examno">
+    <div class="ph">
+      <div class="ph-pre">Bot · Live &amp; Deployed</div>
+      <h2><span class="hl">Exam No</span> Bot</h2>
+      <p>Get your Exam Number instantly via Enrollment Number — no clerk, no chaos, no missed exams.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-n">1</div><div class="stat-l">Command</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Year Groups</div></div>
+      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Online</div></div>
+      <div class="stat"><div class="stat-n">🔒</div><div class="stat-l">Private Only</div></div>
+    </div>
+
+    <!-- Why it was built -->
+    <div class="note" style="margin-bottom:20px;">💢 <strong>Why this bot exists:</strong> RenGoku missed an AT exam because the college sent zero notification. When they went to the clerk for the Exam Number, the clerk refused to help without it. This bot was built so that never happens to anyone again.</div>
+
+    <!-- How it works -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⚡ How It Works</div>
+    <div class="sbox" style="margin-bottom:20px;">
+      <p>
+        1️⃣ Student runs <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">/examno</span> in their division channel → year buttons appear (FYBCA / SYBCA / TYBCA)<br/><br/>
+        2️⃣ Student selects their year → a popup (modal) appears asking for Enrollment Number<br/><br/>
+        3️⃣ Bot reads the Google Drive sheet → finds the matching row<br/><br/>
+        4️⃣ Exam No + Name + Subject codes sent <strong>ephemerally</strong> — only the student who ran the command sees them
+      </p>
+    </div>
+
+    <!-- Commands -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">⌨️ Commands</div>
+    <div class="cmdbox" style="margin-bottom:20px;"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody>
+      <tr><td><span class="cm">/examno</span></td><td><span class="cd">Shows FYBCA / SYBCA / TYBCA buttons → select year → enter Enrollment No → Exam No + Name + Subjects sent privately (ephemeral).</span></td><td><span class="wall">Everyone</span></td></tr>
+    </tbody></table></div>
+
+    <!-- Sheet format -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">📁 Sheet Format</div>
+    <div class="card" style="margin-bottom:8px;">
+      <div class="ct">Google Sheet Column Layout</div>
+      <p>Each year's sheet follows a fixed format. The bot matches Enrollment No in Col C and returns the row data.</p>
+    </div>
+    <div class="shwrap" style="margin-bottom:20px;">
+      <table class="shtbl" style="min-width:560px;">
+        <thead>
+          <tr><th>Col A</th><th>Col B</th><th>Col C</th><th>Col D</th><th>Col E+</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="nc">Sr.No</td>
+            <td class="nc">Exam No</td>
+            <td class="nc">Enrollment No</td>
+            <td class="nc">Name</td>
+            <td style="color:var(--o);">Subjects (dash-separated)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td class="nv">24BCA24146</td>
+            <td class="nv">230110107146</td>
+            <td class="nc">Vraj</td>
+            <td class="nv">CAM_201-2C - CAM_202-2C - CAM_203-2C</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note" style="margin-bottom:20px;">📌 <strong>Col A</strong> = Sr.No | <strong>Col B</strong> = Exam No | <strong>Col C</strong> = Enrollment No (student enters this) | <strong>Col D</strong> = Name | <strong>Col E</strong> = Subjects (dash-separated)</div>
+
+    <!-- Folder structure -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">📂 Drive Folder Structure</div>
+    <div class="terminal" style="margin-bottom:20px;">
+      <div class="t-bar"><div class="td1"></div><div class="td2"></div><div class="td3"></div><span class="t-lbl">drive_structure.sh</span></div>
+      <div class="t-body">
+        <span class="tc"># Google Drive → Exam No Bot root folder</span><br/>
+        <span class="tg">KSV Exam No</span>/<br/>
+        <span class="ta">├── FYBCA</span>  <span class="tc">← Google Sheet here</span><br/>
+        <span class="ta">├── SYBCA</span>  <span class="tc">← Google Sheet here</span><br/>
+        <span class="ta">└── TYBCA</span>  <span class="tc">← Google Sheet here</span>
+      </div>
+    </div>
+
+    <!-- Privacy note -->
+    <div class="note" style="margin-bottom:20px;">🔒 <strong>Privacy first:</strong> Exam No and subject codes are sent as ephemeral messages — only the student who ran the command can see them. No one else in the channel sees it.</div>
+
+    <!-- Tech Stack -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:10px;">🛠️ Tech Stack</div>
+    <div class="g2" style="margin-bottom:14px;">
+      <div class="card"><div class="ct">🐍 Python</div><p>Core language — handles slash commands, sheet lookup, and modal logic.</p></div>
+      <div class="card"><div class="ct">📦 discord.py</div><p>Slash commands, button interactions, modal popups, and ephemeral replies.</p></div>
+      <div class="card"><div class="ct">📊 gspread</div><p>Google Sheets API wrapper — real-time Exam No lookup by Enrollment Number.</p></div>
+      <div class="card"><div class="ct">🚂 Railway.app</div><p>Cloud hosting — bot deployed and running 24/7.</p></div>
+    </div>
+    <div style="margin-bottom:24px;"><span class="tag">Python 3.10+</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway.app</span><span class="tag o">Google Sheets API</span></div>
+
+    <!-- Access instructions -->
+    <div class="sbox">
+      <p>💡 <strong>To get your Exam Number:</strong><br/><br/>
+      1️⃣ Join the KSV Discord server via the invite link<br/>
+      2️⃣ Go to your division channel (e.g. SYBCA-C)<br/>
+      3️⃣ Type <span style="color:var(--ac);font-family:'JetBrains Mono',monospace;">/examno</span> → select your year<br/>
+      4️⃣ Enter your Enrollment Number in the popup<br/>
+      5️⃣ Your Exam No + Subjects appear — <strong>only visible to you 🔒</strong></p>
+    </div>
+  </div>
+  <!-- /EXAM NO BOT DETAIL -->
   <div class="sec" id="sec-roadmap">
     <div class="ph">
       <div class="ph-pre">Bot Ecosystem · Timeline</div>
@@ -1084,7 +1189,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       </div>
 
       <!-- Result Bot -->
-      <div style="margin-bottom:28px;">
+      <div style="margin-bottom:18px;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
           <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Apr 2026</span>
           <span class="s-live" style="font-size:.55rem;">LIVE</span>
@@ -1105,17 +1210,11 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
         </div>
       </div>
 
-      <!-- ── IN PROGRESS / UPCOMING ── -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--o);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
-        <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--o);box-shadow:0 0 10px var(--o);"></div>
-        ⚡ Up Next
-      </div>
-
       <!-- Exam No Bot -->
       <div style="margin-bottom:28px;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Coming Soon</span>
-          <span class="s-next" style="font-size:.55rem;">UP NEXT</span>
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Apr 2026</span>
+          <span class="s-live" style="font-size:.55rem;">LIVE</span>
         </div>
         <div class="botcard" style="margin-bottom:0;">
           <div class="bchdr" onclick="tb('r_e1')">
@@ -1123,11 +1222,39 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             <div class="binfo">
               <div class="bname">Exam No Bot</div>
               <div class="btag">Enrollment No → Exam No + Subject Codes</div>
-              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span></div>
+              <div style="margin-top:5px;"><span class="tag">Python</span><span class="tag">discord.py</span><span class="tag">gspread</span><span class="tag g">Railway</span></div>
             </div>
           </div>
           <div class="bbody" id="r_e1">
             <p class="bdesc">Born from a real frustration — college gave zero exam notification and the clerk refused to help without an Exam Number. Enter Enrollment No → get Exam No + Subject Codes instantly. No clerk visit needed.</p>
+            <div style="margin-top:10px;"><button onclick="nav('examno',null)" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--ac);font-size:.75rem;padding:8px 16px;border-radius:var(--rr);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;">🪪 View Details →</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── UP NEXT ── -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--o);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+        <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--o);box-shadow:0 0 10px var(--o);"></div>
+        ⚡ Up Next
+      </div>
+
+      <!-- Timetable Bot -->
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <span style="font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--mu);">Coming Soon</span>
+          <span class="s-next" style="font-size:.55rem;">UP NEXT</span>
+        </div>
+        <div class="botcard" style="margin-bottom:0;">
+          <div class="bchdr" onclick="tb('r_t1')">
+            <div class="bico">📅</div>
+            <div class="binfo">
+              <div class="bname">Exam Timetable Bot</div>
+              <div class="btag">Query exam schedule anytime — no WhatsApp hunting</div>
+            </div>
+            <div><span class="s-next">UP NEXT</span></div>
+          </div>
+          <div class="bbody" id="r_t1">
+            <p class="bdesc">Search exam schedule by date or subject directly in Discord. No more digging through WhatsApp screenshot chains.</p>
           </div>
         </div>
       </div>
@@ -1136,23 +1263,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--mu);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
         <div style="position:absolute;left:3px;width:14px;height:14px;border-radius:50%;background:var(--b2);border:2px solid var(--mu);"></div>
         📋 Planned
-      </div>
-
-      <!-- Timetable Bot -->
-      <div style="margin-bottom:14px;">
-        <div class="botcard" style="margin-bottom:0;opacity:.75;">
-          <div class="bchdr" onclick="tb('r_t1')">
-            <div class="bico">📅</div>
-            <div class="binfo">
-              <div class="bname">Exam Timetable Bot</div>
-              <div class="btag">Query exam schedule anytime — no WhatsApp hunting</div>
-            </div>
-            <div><span class="s-plan">PLANNING</span></div>
-          </div>
-          <div class="bbody" id="r_t1">
-            <p class="bdesc">Search exam schedule by date or subject directly in Discord. No more digging through WhatsApp screenshot chains.</p>
-          </div>
-        </div>
       </div>
 
       <!-- Reminder Bot -->
@@ -1215,7 +1325,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div class="pslide" id="pp06"><div class="pslabel">06 · Commands</div><h3>All Commands</h3><div class="cmdbox"><table class="cmdtbl"><thead><tr><th>Command</th><th>What it does</th><th>Access</th></tr></thead><tbody><tr><td><span class="cm">!help</span></td><td><span class="cd">Shows all commands.</span></td><td><span class="wall">Everyone</span></td></tr><tr><td><span class="cm">!upload</span><span class="cx">!upload &lt;id&gt;</span></td><td><span class="cd">Connect Google Sheet.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!date</span><span class="cx">!date 09-04-2026</span></td><td><span class="cd">Set attendance date.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!lecture</span><span class="cx">!lecture 3</span></td><td><span class="cd">Set total lectures today.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!set</span><span class="cx">!set 05 3</span></td><td><span class="cd">Mark attended lectures by Roll No.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!holiday</span><span class="cx">!holiday 14-04-2026</span></td><td><span class="cd">Mark a holiday.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!reset</span><span class="cx">!reset date roll att</span></td><td><span class="cd">Fix wrong entry.</span></td><td><span class="wcr">CR/LR</span></td></tr><tr><td><span class="cm">!report</span><span class="cx">!report 05</span></td><td><span class="cd">Attendance % — CR/LR/Faculty → channel | Students → DM 📬</span></td><td><span class="wall">Everyone</span></td></tr><tr><td><span class="cm">!low</span></td><td><span class="cd">Students below 70%.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr><tr><td><span class="cm">!high</span></td><td><span class="cd">Students at 95%+.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr><tr><td><span class="cm">!check</span><span class="cx">!check 09-04-2026</span></td><td><span class="cd">Who attended on a date.</span></td><td><span class="wcr">CR/LR+Fac</span></td></tr></tbody></table></div></div>
     <div class="pslide" id="pp07"><div class="pslabel">07 · Setup</div><h3>How to Install & Run</h3><div class="card"><div class="ct">Step 1 — Prerequisites</div><p>Python 3.10+, Discord account, Google account, GitHub account.</p></div><div class="terminal"><div class="t-bar"><div class="td1"></div><div class="td2"></div><div class="td3"></div><span class="t-lbl">terminal</span></div><div class="t-body"><span class="tc"># Clone the repo</span><br/><span class="pr">git clone https://github.com/vadaliavraj0214-creator/Attendance-Bot</span><br/><span class="pr">cd Attendance-Bot</span><br/><span class="pr">pip install discord.py gspread google-auth oauth2client</span></div></div><div class="card"><div class="ct">Step 2 — Discord Bot Token</div><p>discord.com/developers → New App → Bot → Reset Token → Copy.</p></div><div class="card"><div class="ct">Step 3 — Google Service Account</div><p>console.cloud.google.com → Enable Sheets API → Service Account → Download JSON → Share Sheet with service account email.</p></div><div class="card"><div class="ct">Step 4 — Deploy on Railway</div><p>Push to GitHub → railway.app → Deploy from GitHub → Add env variables → Live 24/7.</p></div></div>
     <div class="pslide" id="pp08"><div class="pslabel">08 · Workflow</div><h3>Daily Usage Flow</h3><div class="pflow"><div class="pfs"><div class="pfn">01</div>!date<br/>09-04-2026</div><div class="pfs"><div class="pfn">02</div>!lecture 3</div><div class="pfs"><div class="pfn">03</div>!set 05 2</div><div class="pfs"><div class="pfn">04</div>Sheet updated ✅</div></div><div class="pflow"><div class="pfs"><div class="pfn">05</div>!report 05</div><div class="pfs"><div class="pfn">06</div>Bot reads months</div><div class="pfs"><div class="pfn">07</div>Calculates %</div><div class="pfs"><div class="pfn">08</div>DM sent 📬</div></div><div class="sbox" style="margin-top:12px;"><p>💡 !low → defaulters instantly. No Excel, no manual counting. Zero effort.</p></div></div>
-    <div class="pslide" id="pp09"><div class="pslabel">09 · Roadmap</div><h3>What's coming next?</h3><div class="g2"><div class="card"><div class="ct">📊 Result Bot</div><p>Exam No → marks instantly.</p><div style="margin-top:7px;"><span class="tag o">In Progress</span></div></div><div class="card"><div class="ct">🪪 Exam No Bot</div><p>Enrollment No → Exam No + codes.</p><div style="margin-top:7px;"><span class="tag">Up Next</span></div></div><div class="card"><div class="ct">📅 Timetable Bot</div><p>Query exam schedule.</p><div style="margin-top:7px;"><span class="tag">Planning</span></div></div><div class="card"><div class="ct">🔔 Reminder Bot</div><p>Deadline reminders in Discord.</p><div style="margin-top:7px;"><span class="tag">Planning</span></div></div></div><div class="note">🎯 Complete College Ecosystem — made by a student, for students.</div></div>
+    <div class="pslide" id="pp09"><div class="pslabel">09 · Roadmap</div><h3>What's coming next?</h3><div class="g2"><div class="card"><div class="ct">📊 Result Bot</div><p>Exam No → marks instantly.</p><div style="margin-top:7px;"><span class="tag g">LIVE</span></div></div><div class="card"><div class="ct">🪪 Exam No Bot</div><p>Enrollment No → Exam No + codes.</p><div style="margin-top:7px;"><span class="tag g">LIVE</span></div></div><div class="card"><div class="ct">📅 Timetable Bot</div><p>Query exam schedule.</p><div style="margin-top:7px;"><span class="tag o">Up Next</span></div></div><div class="card"><div class="ct">🔔 Reminder Bot</div><p>Deadline reminders in Discord.</p><div style="margin-top:7px;"><span class="tag">Planning</span></div></div></div><div class="note">🎯 Complete College Ecosystem — made by a student, for students.</div></div>
       
   </div><!-- /sec-pres -->
 
@@ -1725,6 +1835,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             <a class="gf-lnk" onclick="nav('attendance',null)">📋 Attendance Bot</a>
             <a class="gf-lnk" onclick="nav('notes',null)">📚 Notes Bot</a>
             <a class="gf-lnk" onclick="nav('result',null)">📊 Result Bot</a>
+            <a class="gf-lnk" onclick="nav('examno',null)">🪪 Exam No Bot</a>
             <a class="gf-lnk" onclick="nav('roadmap',null)">🗺 Roadmap</a>
           </div>
           <div class="gf-col">
@@ -1781,7 +1892,7 @@ const SEC_NAMES = {
   overview:'Overview', rules:'Rules', roles:'Roles', channels:'Channels',
   security:'Security', workflow:'Workflow', serverbots:'Server Bots',
   whydiscord:'Why Discord?', bots:'Bot Ecosystem', attendance:'Attendance Bot',
-  result:'Result Bot', notes:'Notes Bot', roadmap:'Roadmap', feedback:'Help & Feedback',
+  result:'Result Bot', notes:'Notes Bot', examno:'Exam No Bot', roadmap:'Roadmap', feedback:'Help & Feedback',
   contact:'About Developer & Agency', services:'Our Services', faq:'Help / FAQ',
   pres:'Attendance Bot — Presentation'
 };

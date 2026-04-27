@@ -7,6 +7,31 @@ Format: `[Version] - DD/MM/YYYY` → What changed
 
 ---
 
+## [2.3.0] - 28/04/2026
+
+### 🪪 Exam No Bot Launch
+
+#### Added
+- Exam No Bot full documentation page added (`sec-examno`)
+- Complete command table: `/examno`
+- Sheet format table with column layout explanation
+- Google Drive folder structure diagram (terminal style)
+- How-to-use step-by-step access guide
+
+#### Changed
+- Exam No Bot status updated: `UP NEXT → LIVE` across all sections (sidebar, bots overview, roadmap)
+- Bot Ecosystem overview updated — bot list now in a, b, c, d format
+- Bot Ecosystem overview card updated with "VIEW FULL DETAILS" button for Exam No Bot
+- Version bumped to v2.3 · 28/04/2026
+- Hero stats updated: "3 Bots Live → 4 Bots Live"
+- Roadmap updated: Timetable Bot is now Up Next
+- Footer nav updated: Exam No Bot link added
+
+#### Fixed
+- Service Worker cache version bumped to `ksv-v2.3.0`
+
+---
+
 ## [2.2.0] - 25/04/2026
 
 ### 🤖 Result Bot Launch

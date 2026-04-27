@@ -10,18 +10,19 @@ const SITE = {
   university: "KSV University – Kadi",
   college: "Narsinhbhai Patel College of Computer Studies & Management",
   collegeShort: "NPCCSM",
-  version: "2.2",
-  lastUpdated: "25/04/2026",
+  version: "2.3",
+  lastUpdated: "28/04/2026",
 
   // ── CHANGELOG (for What's New popup) ────────────────────
   changelog: {
-    currentVersion: "2.2.0",
-    releaseDate: "25/04/2026",
+    currentVersion: "2.3.0",
+    releaseDate: "28/04/2026",
     updates: [
-      { type: "new",      text: "Result Bot launched — check marks via Exam No instantly" },
-      { type: "new",      text: "Result Bot full documentation page added to website" },
-      { type: "improved", text: "Bot Ecosystem updated with live Result Bot status" },
-      { type: "improved", text: "Roadmap updated — Exam No Bot is next in queue" }
+      { type: "new",      text: "Exam No Bot launched — Enrollment No → Exam No instantly" },
+      { type: "new",      text: "Exam No Bot full documentation page added to website" },
+      { type: "improved", text: "Bot Ecosystem updated — 4 bots now live" },
+      { type: "improved", text: "Bot list updated to a, b, c, d format" },
+      { type: "improved", text: "Roadmap updated — Exam No Bot marked as LIVE" }
     ]
   },
   builtBy: "RenGoku (Vadalia Vraj Kaushikbhai)",
@@ -284,12 +285,14 @@ const SITE = {
       id: "examno",
       name: "Exam No Bot",
       icon: "🪪",
-      status: "next",
-      statusLabel: "Up Next",
+      status: "live",
+      statusLabel: "Live & Deployed",
       tagline: "Get your Exam Number via Enrollment Number",
       desc: "Born from a real frustration — missed an exam because college gave no notification. Enter Enrollment No → Get Exam No + Subject codes instantly. No more clerk drama.",
-      tech: ["Python", "discord.py", "gspread"],
-      commands: []
+      tech: ["Python", "discord.py", "gspread", "Railway.app"],
+      commands: [
+        { cmd: "/examno", desc: "Select year → enter Enrollment No → Exam No + Name + Subjects sent privately (ephemeral)", access: "Everyone" }
+      ]
     },
     {
       id: "timetable",
@@ -346,7 +349,7 @@ const SITE = {
       icon: "📊",
       items: [
         { q: "How do I check my marks using the Result Bot?", a: "Use the /result command in your division channel. The bot shows tab buttons (Internal-1 to Internal-5, External) — select your tab, then enter your Exam Number in the modal popup. Your marks are shown only to you (ephemeral — no one else sees it)." },
-        { q: "Where can I find my Exam Number?", a: "Use the /examno command once the Exam No Bot launches (next in development queue). For now, use /result and enter the Exam Number from your hall ticket or ask your CR/LR." },
+        { q: "Where can I find my Exam Number?", a: "Use the /examno command — select your year, enter your Enrollment Number, and your Exam No + Subject codes are sent privately. No need to visit the clerk." },
         { q: "What is the difference between the Result Bot and Attendance Bot?", a: "The Attendance Bot uses prefix commands (!report, !low, etc.) and pulls live data from Google Sheets. The Result Bot uses slash commands (/result) and fetches data from the marks sheet." },
         { q: "My result isn't showing — the bot sent nothing?", a: "Make sure you're entering the correct Exam Number. The bot reads directly from the Google Drive folder — no manual setup is needed by CR/LR. If the issue persists, the sheet for that particular tab (Internal-1, External, etc.) may not have been uploaded yet by the faculty. Contact your CR/LR or faculty to confirm." }
       ]
@@ -368,7 +371,7 @@ const SITE = {
       items: [
         { q: "We already have a WhatsApp group — why Discord?", a: "Discord has role-based channels so you only see relevant information. Bots automate tasks like attendance and results. Search actually works. Files stay organised. WhatsApp mixes everything into one chaotic feed." },
         { q: "Can I talk to faculty directly?", a: "Yes — every department has an 'Ask Faculty' channel where faculty answer questions. You can also DM them directly if they're on the server." },
-        { q: "When will new features arrive?", a: "Check the Roadmap — Exam No Bot is next in queue, followed by Exam Timetable Bot and Reminder Bot. Hit the What's New button for the latest updates." }
+        { q: "When will new features arrive?", a: "Check the Roadmap — Exam Timetable Bot is next in queue, followed by Reminder Bot and Notebook Bot. Hit the What's New button for the latest updates." }
       ]
     }
   ]

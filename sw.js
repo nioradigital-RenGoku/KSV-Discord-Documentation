@@ -1,10 +1,10 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //  sw.js  —  KSV University Website · Service Worker
 //  Handles offline caching for PWA support
-//  Version: 2.1.0
+//  Version: 2.3.0
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-const CACHE_NAME = 'ksv-v2.2.0';
+const CACHE_NAME = 'ksv-v2.3.0';
 
 // Yeh files offline me bhi available rahegi
 const CACHE_FILES = [
