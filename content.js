@@ -258,7 +258,7 @@ const SITE = {
       status: "live",
       statusLabel: "Live & Deployed",
       tagline: "Subject-wise study notes delivered to your DM",
-      desc: "Access subject-wise PDF notes directly in Discord. Role-gated — only accessible after joining the server and receiving your year role (FYBCA/SYBCA/TYBCA). Use !notes → select subject → PDF DM'd instantly.",
+      desc: "Access subject-wise PDF notes directly in Discord. Use !notes → select your semester (Sem-1 to Sem-6) → pick subject → PDF link arrives in your DM. Open to all server members.",
       tech: ["Python", "discord.py", "Google Drive", "Railway.app"],
       commands: [
         { cmd: "!notes", desc: "Get subject-wise PDF notes in DM", access: "Everyone (role-gated)" }
